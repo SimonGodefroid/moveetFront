@@ -15,11 +15,26 @@ const widthimage = Dimensions.get("window").width;
 const heightimage = (Dimensions.get("window").height - Global.navBarHeight) / 6;
 
 export default class UserCard extends React.Component {
+  // renderFavMovies(favorites) {
+  //   return (
+  //     <Text>
+  //       {favorites.map(fav => {
+  //         return fav;
+  //       })}
+  //     </Text>
+  //   );
+  // }
+
   render() {
     return (
       <View style={[styles.viewCard, { position: "relative" }]}>
         <View
-          style={{ position: "absolute", top: heightimage / 6 - 6, left: 20 }}
+          style={{
+            position: "absolute",
+            top: heightimage / 6 - 6,
+            left: 20,
+            zIndex: 10000
+          }}
         >
           <Avatar
             height={70}
@@ -28,7 +43,7 @@ export default class UserCard extends React.Component {
             picture={this.props.picture}
           />
         </View>
-        <View style={[styles.overlay, { backgroundColor: this.props.color }]}>
+        <View style={[styles.overlay, { backgroundColor: "black" }]}>
           <View style={styles.textView}>
             <Text style={styles.textHeader}>{this.props.username}</Text>
             <Text style={styles.textContent}>
@@ -38,8 +53,13 @@ export default class UserCard extends React.Component {
               {this.props.genre}
               ,
               {" "}
-              {this.props.distance} km
+              {this.props.distance} km,
+              {" "}
+              {this.props.favoritesNum} Films
             </Text>
+            {/*<Text style={styles.textSubContent}>
+              {this.renderFavMovies(this.props.favorites)}
+            </Text>*/}
           </View>
         </View>
       </View>
@@ -67,7 +87,7 @@ const styles = StyleSheet.create({
     fontFamily: Global.secondFontBold,
     fontSize: 22,
     position: "absolute",
-    top: 20,
+    top: 5,
     left: 110
     //textAlign: "center"
   },
@@ -76,7 +96,15 @@ const styles = StyleSheet.create({
     fontFamily: Global.secondFontBold,
     fontSize: 16,
     position: "absolute",
-    top: 50,
+    top: 35,
+    left: 110
+  },
+  textSubContent: {
+    color: Global.secondColor,
+    fontFamily: Global.secondFontBold,
+    fontSize: 16,
+    position: "absolute",
+    top: 60,
     left: 110
   },
   overlay: {

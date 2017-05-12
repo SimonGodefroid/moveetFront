@@ -125,7 +125,7 @@ export default class UserProfileScene extends React.Component {
     }*/
     }
     return (
-      <View>
+      <View style={{alignItems:'center'}}>
         {this.renderButton(
           "Chatter avec ",
           "",
@@ -145,6 +145,8 @@ export default class UserProfileScene extends React.Component {
         onPressFn={method}
         currentUser={Api.getUser()._id}
         buddyUser={this.props.userData._id}
+        color={"white"}
+        backgroundColor={Global.moveetColor}
       />
     );
   }

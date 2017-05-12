@@ -13,6 +13,7 @@ import {
 import Api from "../../Api";
 import Config from "../../Config";
 import SwipeCards from "react-native-swipe-cards";
+import { Actions } from "react-native-router-flux";
 
 let {
   height,
@@ -22,25 +23,37 @@ let {
 let Card = React.createClass({
   render() {
     return (
-      <TouchableOpacity onPress={() => console.log("pressed")}>
+      <TouchableOpacity onPress={() => Actions.movie({ movie: this.props })}>
         <View
           style={[styles.card, { backgroundColor: this.props.backgroundColor }]}
         >
           <Image
-            style={{ marginTop: 60, height: height - 180, width: width - 40 }}
+            style={{
+              marginTop: 20,
+              height: height - 180,
+              width: width - 20,
+              position: "relative"
+            }}
             source={{ uri: this.props.posterPath }}
           />
-          <View style={{ marginTop: 20, alignItems: "center" }}>
+
+          <View style={{ marginTop: 5, alignItems: "center" }}>
+
+            <Text>{this.props.originalTitle}</Text>
+            <Text>
+              {" "}
+              {this.props.statusList === "nowshowing"
+                ? `A l'affiche dans ${this.props.statistics.theaterCount} salles`
+                : `Sortie prévue le`}
+            </Text>
             <Text>
               {new Date(this.props.release.releaseDate).toLocaleDateString(
                 "fr-FR"
               )}
             </Text>
-            <Text>{this.props.statusList}</Text>
-            <Text>{this.props.originalTitle}</Text>
-            <Text>{this.props.statistics.theaterCount}</Text>
           </View>
         </View>
+
       </TouchableOpacity>
     );
   }

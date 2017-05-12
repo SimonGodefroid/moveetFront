@@ -77,6 +77,7 @@ export default class BuddiesTabsScene extends React.Component {
       >
         <UserCard
           username={rowData.account.username}
+          favoritesNum={rowData.account.favorites.length}
           age={rowData.account.age}
           genre={rowData.account.genre}
           color={"rgba(100,200,126, 0.35)"}
@@ -91,6 +92,7 @@ export default class BuddiesTabsScene extends React.Component {
             Api.getUser().account.location.latitude,
             Api.getUser().account.location.longitude
           )}
+          favorites={rowData.account.favorites}
         />
       </TouchableOpacity>
     );

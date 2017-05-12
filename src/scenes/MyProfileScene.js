@@ -18,7 +18,6 @@ import Swiper from "react-native-swiper";
 import { Actions } from "react-native-router-flux";
 import Global from "../Global";
 import Config from "../Config";
-import InteractionButton from "../components/core/InteractionButton";
 import Fav from "../components/core/Fav";
 import _ from "lodash";
 
@@ -201,9 +200,6 @@ export default class UserProfileScene extends React.Component {
             {this.props.userData.account.description}
           </Text>
           {this.renderSlidesMoveet()}
-          <View>
-            {this.renderInteractionButtons()}
-          </View>
 
         </ScrollView>
       );

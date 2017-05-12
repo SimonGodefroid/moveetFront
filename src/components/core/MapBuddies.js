@@ -2,8 +2,9 @@ import React from "react";
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import Api from "../../Api";
 import Map from "react-native-maps";
+import MyCustomCalloutViewBuddies from "./MyCustomCalloutViewBuddies";
 
-export default class MapMovies extends React.Component {
+export default class MapBuddies extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,19 +28,24 @@ export default class MapMovies extends React.Component {
     const usersMarkers = users.map((user, index) => (
       <Map.Marker
         title={user.account.username}
+        description={`${user.account.genre}, ${user.account.age}`}
         coordinate={{
           latitude: user.account.location.latitude,
           longitude: user.account.location.longitude
         }}
         key={index}
-      />
+      >
+        <Map.Callout>
+          <MyCustomCalloutViewBuddies {...user} />
+        </Map.Callout>
+      </Map.Marker>
     ));
 
     return usersMarkers;
   }
   render() {
     return (
-      <View style={{ marginTop: 200 }}>
+      <View style={{ marginTop: 0 }}>
         <Map
           style={styles.mapview}
           showsUserLocation={true} // remember to set a custom location
@@ -61,6 +67,6 @@ export default class MapMovies extends React.Component {
 const styles = StyleSheet.create({
   mapview: {
     width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height * 0.33
+    height: Dimensions.get("window").height - 100
   }
 });

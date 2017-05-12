@@ -10,7 +10,7 @@ import {
 } from "react-native-gifted-chat";
 import Api from "../Api";
 import Global from "../Global";
-//import Config from "../core/Config";
+import Config from "../Config";
 
 const USER_ID = Api.getUser()._id;
 console.log("USERID ", USER_ID);
@@ -32,7 +32,7 @@ export default class TchatScene extends React.Component {
     // this.client = SocketIOClient("http://localhost:3000", {
     //   jsonp: false
     // });
-    this.client = SocketIOClient("http://172.20.10.11:3000", {
+    this.client = SocketIOClient(`${Config.hostChat}`, {
       jsonp: false
     });
     this._isMounted = false;

@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   Alert,
   TextInput,
-  Dimensions
+  Dimensions,
+  StatusBar
 } from "react-native";
 import { Actions } from "react-native-router-flux";
 import Api from "../Api";
@@ -33,7 +34,7 @@ export default class LoginScene extends React.Component {
       password: this.state.password
     };
     Api.logIn(user, () =>
-      Actions.mosaic({
+      Actions.search({
         type: "replace"
       }));
   }
@@ -44,6 +45,7 @@ export default class LoginScene extends React.Component {
         source={require("../../assets/img/bg-v.png")}
         style={styles.container}
       >
+        <StatusBar barStyle="dark-content" />
         <View style={styles.logo_container}>
           <Animatable.Image
             animation="bounceIn"
@@ -103,7 +105,7 @@ const inputWidth = Dimensions.get("window").width - PADDING * 2;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 60,
+    paddingTop: 70,
     alignItems: "center",
     width: null,
     resizeMode: "cover",
@@ -113,17 +115,17 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   logo: {
-    width: 170,
+    width: 180,
     height: 180
   },
   input: {
     height: 50,
     borderWidth: 1,
-    backgroundColor: "transparent",
-    color: "white",
+    backgroundColor: "white",
+    color: Global.moveetColor,
     width: inputWidth,
     borderRadius: 25,
-    borderColor: "white",
+    borderColor: Global.moveetColor,
     borderWidth: 3,
     marginBottom: 20,
     fontFamily: Global.secondFont,
@@ -134,21 +136,21 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: Global.mainFont,
     fontSize: 50,
-    color: "white",
+    color: Global.moveetColor,
     borderBottomColor: "#59BDB2",
     borderBottomWidth: 5,
     marginBottom: 30,
     backgroundColor: "transparent"
   },
   login_button: {
-    backgroundColor: "white",
+    backgroundColor: Global.moveetColor,
     padding: 12,
     borderRadius: 25,
     alignItems: "center",
     width: inputWidth
   },
   login_text: {
-    color: "#59BDB2",
+    color: "white",
     alignItems: "center",
     fontFamily: Global.mainFont,
     fontSize: 20

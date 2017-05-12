@@ -103,9 +103,47 @@ export default class MovieShowtimesScene extends Component {
     const screenings = section.movieShowtimes.map((movie, index) => {
       return (
         <View key={index}>
-          <Text>{movie.version.$}</Text>
+          <Text
+            style={{
+              textAlign: "center",
+              backgroundColor: "black",
+              color: "white",
+
+              marginBottom: 5
+            }}
+          >
+            {movie.version.$}
+          </Text>
           {movie.scr.map((date, index1) => {
-            return <Text key={index1}>{date.d}</Text>;
+            return (
+              <View style={{ flexDirection: "row" }} key={index1}>
+                <Text key={index1} style={{ fontSize: 14 }}>
+                  {date.d.split("-").reverse().join("/")}{"\n"}
+                  <View
+                    key={index1}
+                    style={{
+                      height: 40,
+                      width: 0,
+                      flexDirection: "row",
+                      alignItems: "center"
+                    }}
+                  >
+                    {date.t.map((time, index2) => {
+                      return (
+                        <View style={{ height: 30, width: 40, margin: 10 }}>
+                          <Text
+                            style={{ textAlign: "center", paddingTop: 2 }}
+                            key={index2}
+                          >
+                            {time.$}
+                          </Text>
+                        </View>
+                      );
+                    })}
+                  </View>
+                </Text>
+              </View>
+            );
           })}
 
         </View>
@@ -113,8 +151,8 @@ export default class MovieShowtimesScene extends Component {
     });
 
     return (
-      <View style={styles.content}>
-        <Text>
+      <View style={[styles.content, { marginHorizontal: 10 }]}>
+        <Text style={{ padding: 10 }}>
           {section.place.theater.address}
 
           ,
@@ -126,7 +164,9 @@ export default class MovieShowtimesScene extends Component {
           {" "}
 
         </Text>
-        {screenings}
+        <View style={{ justifyContent: "center" }}>
+          {screenings}
+        </View>
       </View>
     );
   }
@@ -154,7 +194,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 22,
     fontWeight: "300",
-    marginBottom: 20
+    marginBottom: 10
   },
   header: {
     backgroundColor: "#F5FCFF",
@@ -166,7 +206,7 @@ const styles = StyleSheet.create({
     fontWeight: "500"
   },
   content: {
-    padding: 20,
+    paddingBottom: 10,
     backgroundColor: "#fff"
   },
   active: {

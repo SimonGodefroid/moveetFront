@@ -120,7 +120,11 @@ export default class ResultsScene extends React.Component {
         </View>
         <View style={{ position: "absolute", bottom: 20, left: 150 }}>
           <Text>{rowData.statusList}</Text>
-          <Text>{rowData.statistics.userRating * 2}</Text>
+          <Text>
+            {!isNaN(rowData.statistics.userRating * 2)
+              ? rowData.statistics.userRating * 2
+              : ""}
+          </Text>
         </View>
       </TouchableOpacity>
     );

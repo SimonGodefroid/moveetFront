@@ -14,10 +14,10 @@ import Api from "../Api.js";
 import { Actions } from "react-native-router-flux";
 import Global from "../Global";
 import Config from "../Config";
-import MapBuddies from "../components/core/MapBuddies";
+import MapMovies from "../components/core/MapMovies";
 import MapMovieTheaters from "../components/core/MapMovieTheaters";
 import _ from "lodash";
-import { TabViewAnimated, TabBar, SceneMap } from "react-native-tab-view";
+import { TabViewAnimated, TabBar } from "react-native-tab-view";
 
 let {
   height,
@@ -40,10 +40,14 @@ export default class AroundMeScene extends React.Component {
 
     this.state = {
       latitude: 0,
-      longitude: 0,
-      index: 0,
-      routes: [{ key: "1", title: "Cinémas" }, { key: "2", title: "Buddies" }]
+      longitude: 0
     };
+  }
+
+  getLocation() {
+    navigator.geolocation.getCurrentPosition(position => {
+      console.log(position);
+    });
   }
 
   getUserLocation() {
@@ -63,7 +67,8 @@ export default class AroundMeScene extends React.Component {
         `${Config.host}/api/user/${Api.getUser()._id}/updateLocation/?lat=${position.coords.latitude}&long=${position.coords.longitude}&timestamp=${position.timestamp}`,
         {
           method: "POST"
-        }
+        },
+        console.log("coucou", position)
       );
     });
   }
@@ -77,65 +82,21 @@ export default class AroundMeScene extends React.Component {
     });
   }
 
-  _handleChangeTab = index => {
-    this.setState({ index });
-  };
-
-  _renderHeader = props => {
-    return <TabBar {...props} />;
-  };
-
-  _renderScene = ({ route }) => {
-    switch (route.key) {
-      case "1":
-        return (
-          <View style={styles.page}>
-            <MapMovieTheaters
-              latitude={this.state.latitude}
-              longitude={this.state.longitude}
-            />
-          </View>
-        );
-      case "2":
-        return (
-          <View style={styles.page}>
-            <MapBuddies
-              latitude={this.state.latitude}
-              longitude={this.state.longitude}
-            />
-          </View>
-        );
-      default:
-        return null;
-    }
-  };
-
   render() {
     return (
-      <TabViewAnimated
-        style={[styles.container, { marginTop: 64 }]}
-        navigationState={this.state}
-        renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
-        onRequestChangeTab={this._handleChangeTab}
-      />
+      <View>
+        <Text>Around Me Scene</Text>
+        {/*<MapMovies />*/}
+        <MapMovieTheaters
+          latitude={this.state.latitude}
+          longitude={this.state.longitude}
+        />
+
+        <TouchableOpacity onPress={() => this.setLocation()}>
+          <Text>Locate Me !</Text>
+        </TouchableOpacity>
+
+      </View>
     );
   }
 }
-// render() {
-//   return (
-//     <View>
-//       <Text>Around Me Scene</Text>
-//       {/*<MapMovies />*/}
-//       <MapMovieTheaters
-//         latitude={this.state.latitude}
-//         longitude={this.state.longitude}
-//       />
-
-//       <TouchableOpacity onPress={() => this.setLocation()}>
-//         <Text>Locate Me !</Text>
-//       </TouchableOpacity>
-
-//     </View>
-//   );
-// }

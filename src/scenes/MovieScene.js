@@ -42,14 +42,27 @@ export default class MovieScene extends React.Component {
   renderStatusList(movie) {
     if (movie.statusList === "comingsoon") {
       return (
-        <Text style={{ color: "white", backgroundColor: "green", padding: 10 }}>
+        <Text
+          style={{
+            color: "white",
+            backgroundColor: "green",
+            padding: 10,
+            textAlign: "center"
+          }}
+        >
           Bientôt à l'affiche
         </Text>
       );
     }
     return (
-      <Text style={{ color: "white", backgroundColor: "green", padding: 10 }}>
-        En salles
+      <Text
+        style={{
+          color: "green",
+          padding: 10,
+          textAlign: "center"
+        }}
+      >
+        À l'affiche dans {this.props.movie.statistics.theaterCount} salles
       </Text>
     );
   }
@@ -62,15 +75,26 @@ export default class MovieScene extends React.Component {
       <TouchableOpacity
         onPress={() =>
           Actions.movieshowtimes({ movie: { ...this.props.movie } })}
+        style={{
+          marginRight: 30,
+          marginLeft: 30,
+          marginTop: 5,
+          backgroundColor: "black",
+          borderRadius: 20,
+          borderWidth: 5,
+          borderColor: "black"
+        }}
       >
         <Text
           style={{
-            backgroundColor: "black",
+            textAlign: "center",
             color: "white",
-            padding: 10
+            padding: 5,
+            borderColor: "#fff"
+            //            backgroundColor: "black"
           }}
         >
-          {" "}Voir les horaires dans les cinémas autour de moi
+          {" "}Voir les horaires{" "}
         </Text>
       </TouchableOpacity>
     );
@@ -115,7 +139,7 @@ export default class MovieScene extends React.Component {
               </Text>
             </View>
 
-            <View>
+            <View style={{ alignItems: "center" }}>
               {this.renderStatusList(this.props.movie)}
 
             </View>
@@ -138,12 +162,21 @@ export default class MovieScene extends React.Component {
               <TouchableOpacity
                 onPress={() =>
                   Actions.buddyfinder({ movie: { ...this.props.movie } })}
+                style={{
+                  marginRight: 30,
+                  marginLeft: 30,
+                  marginTop: 5,
+                  backgroundColor: Global.moveetColor,
+                  borderRadius: 25,
+                  borderWidth: 5,
+                  borderColor: Global.moveetColor,
+                  marginBottom: 5
+                }}
               >
                 <Text
                   style={{
-                    backgroundColor: Global.moveetColor,
                     color: "white",
-                    padding: 10
+                    padding: 5
                   }}
                 >
                   Trouver un buddy pour ce film

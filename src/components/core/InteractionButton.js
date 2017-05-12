@@ -18,13 +18,29 @@ let {
 export default class Button extends React.Component {
   render() {
     return (
-      <Text
-        style={{ textAlign: "center", margin: 30 }}
+      <TouchableOpacity
+        style={{
+          backgroundColor: this.props.backgroundColor,
+          width: 200,
+          borderStyle: "solid",
+          borderWidth: 1,
+          borderRadius: 20,
+          borderColor: "white",
+          padding: 10,
+          marginTop: 30
+        }}
         onPress={() =>
           this.props.onPressFn(this.props.currentUser, this.props.buddyUser)}
       >
-        {this.props.text}{this.props.text2}{this.props.text3}
-      </Text>
+        <Text
+          style={{
+            textAlign: "center",
+            color: this.props.color
+          }}
+        >
+          {this.props.text}{this.props.text2}{this.props.text3}
+        </Text>
+      </TouchableOpacity>
     );
   }
 }

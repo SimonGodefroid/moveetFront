@@ -17,9 +17,11 @@ import BuddiesTabsScene from "./src/scenes/BuddiesTabsScene";
 import BuddyFinderScene from "./src/scenes/BuddyFinderScene";
 import UserProfileScene from "./src/scenes/UserProfileScene";
 import SwipeMoviesScene from "./src/scenes/SwipeMoviesScene";
+import MyProfileScene from "./src/scenes/MyProfileScene";
 import MovieShowtimesScene from "./src/scenes/MovieShowtimesScene";
 import Api from "./src/Api";
 import Loading from "./src/components/core/Loading";
+import { Actions } from "react-native-router-flux";
 import Global from "./src/Global";
 
 export default class App extends Component {
@@ -75,6 +77,20 @@ export default class App extends Component {
                   color={props.selected ? "#AAA" : "#000"}
                 />
               )}
+              onRight={() => Actions.myprofile({ userData: Api.getUser() })}
+              rightTitle={<Text style={{ color: "white" }}>Mon Profil</Text>}
+            />
+            <Scene
+              key="myprofile"
+              component={MyProfileScene}
+              title="Mon Profil"
+              titleStyle={{ color: "white" }}
+              onLeft={() => Actions.search({})}
+              leftTitle={<Text style={{ color: "white" }}>Retour</Text>}
+              onRight={() => {
+                Api.logOut(Actions.login({}));
+              }}
+              rightTitle={<Text style={{ color: "white" }}>Deconnexion</Text>}
             />
             <Scene
               key={"moviesswiper"}
@@ -154,11 +170,14 @@ export default class App extends Component {
             component={UserProfileScene}
             hideNavBar={false}
             title={"Page Profil"}
+            titleStyle={{ color: "white" }}
           />
           <Scene
             key={"login"}
             component={LoginScene}
+            titleStyle={{ color: "white" }}
             initial={this.state.user === null ? true : false}
+            hideNavBar={true}
           />
           <Scene
             key={"tchat"}
