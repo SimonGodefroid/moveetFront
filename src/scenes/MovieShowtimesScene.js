@@ -24,17 +24,6 @@ import { Actions } from "react-native-router-flux";
 import _ from "lodash";
 import Accordion from "react-native-collapsible/Accordion";
 
-const SECTIONS = [
-  {
-    title: "First",
-    content: "Lorem ipsum..."
-  },
-  {
-    title: "Second",
-    content: "Lorem ipsum..."
-  }
-];
-
 let {
   height,
   width
@@ -130,10 +119,15 @@ export default class MovieShowtimesScene extends Component {
                   >
                     {date.t.map((time, index2) => {
                       return (
-                        <View style={{ height: 30, width: 40, margin: 10 }}>
+                        <View
+                          key={index2}
+                          style={{ height: 30, width: 40, margin: 10 }}
+                        >
                           <Text
                             style={{ textAlign: "center", paddingTop: 2 }}
                             key={index2}
+                            onPress={() =>
+                              console.log("time.$ from accordion", time.$)}
                           >
                             {time.$}
                           </Text>

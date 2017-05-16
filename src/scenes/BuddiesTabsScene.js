@@ -110,6 +110,7 @@ export default class BuddiesTabsScene extends React.Component {
   }
 
   render() {
+    console.log("buddyscene user loc", Api.getUser().account.location);
     console.log("this.state.matchesData", this.state.matchesData);
     return (
       <ScrollView style={{ marginTop: Platform.OS === "ios" ? 70 : 0 }}>

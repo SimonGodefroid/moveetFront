@@ -69,10 +69,11 @@ export default class AroundMeScene extends React.Component {
   }
 
   componentDidMount() {
-    Api.getBuddies(Api.getUser()._id, userInfo => {
+    navigator.geolocation.getCurrentPosition(position => {
+      Api.updateUserLocation(position);
       this.setState({
-        latitude: userInfo.userInfo.account.location.latitude,
-        longitude: userInfo.userInfo.account.location.longitude
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
       });
     });
   }
@@ -88,6 +89,13 @@ export default class AroundMeScene extends React.Component {
   _renderScene = ({ route }) => {
     switch (route.key) {
       case "1":
+        if (this.state.latitude === "" || this.state.latitude === 0) {
+          return (
+            <View>
+              <Text>Vous devez d'abord autoriser la géolocalisation</Text>
+            </View>
+          );
+        }
         return (
           <View style={styles.page}>
             <MapMovieTheaters
@@ -97,6 +105,13 @@ export default class AroundMeScene extends React.Component {
           </View>
         );
       case "2":
+        if (this.state.latitude === "" || this.state.latitude === 0) {
+          return (
+            <View>
+              <Text>Vous devez d'abord autoriser la géolocalisation</Text>
+            </View>
+          );
+        }
         return (
           <View style={styles.page}>
             <MapBuddies

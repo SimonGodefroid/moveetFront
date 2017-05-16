@@ -3,6 +3,10 @@ package com.moveetfront;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.imagepicker.ImagePickerPackage;
+import com.magus.fblogin.FacebookLoginPackage;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
@@ -26,6 +30,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PickerPackage(),
+            new ImagePickerPackage(),
+            new FacebookLoginPackage(),
+            new FBSDKPackage(),
             new VectorIconsPackage(),
             new MapsPackage(),
             new ReactNativeConfigPackage()

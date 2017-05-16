@@ -82,6 +82,17 @@ class Api {
     );
   }
 
+  saveUserImage(imagePath = {}, callback) {
+    console.log("saveUserImage imagePath", imagePath);
+    fetch(`${Config.host}/api/user/${this.getUser()._id}/saveUserImage/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ imagePath })
+    });
+  }
+
   buddyFinder(movieId, userId, callback) {
     fetch(`${Config.host}/api/user/buddyFinder/${movieId}/for/${userId}`)
       .then(res => res.json())
@@ -153,6 +164,7 @@ class Api {
   authenticate(user) {
     Store.save("user", user).then(() => {
       console.log("Saved");
+      console.log("Authenticate $ User : ", user);
       this.setUser(user);
     });
   }
@@ -172,6 +184,30 @@ class Api {
     this.user = user;
     console.log("user is", this.user);
   }
+
+  signUp(user = {}, callback) {
+    fetch(`${Config.host}/api/users/sign_up`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+      .then(res => res.json())
+      .then(json => {
+        if (!json.error) {
+          this.authenticate(json);
+          console.log("signed-up");
+          console.log(json);
+          callback(json);
+        } else {
+          console.log("error", json.error);
+          Alert.alert("Cannot create account");
+          console.log(json);
+        }
+      });
+  }
+
   logIn(user = {}, callback) {
     fetch(`${Config.host}/api/users/log_in`, {
       method: "POST",
@@ -202,6 +238,7 @@ class Api {
   }
   getStore(callback) {
     Store.get("user").then(user => {
+      console.log("getStore User ", user);
       callback(user);
     });
   }

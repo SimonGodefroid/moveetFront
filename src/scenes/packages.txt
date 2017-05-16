@@ -1,2 +1,0 @@
-https://github.com/oblador/react-native-collapsible
-https://github.com/oblador/react-native-animatable

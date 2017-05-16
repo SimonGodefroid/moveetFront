@@ -9,8 +9,12 @@ import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
 import SearchScene from "./src/scenes/SearchScene";
 import ResultsScene from "./src/scenes/ResultsScene";
 import MovieScene from "./src/scenes/MovieScene";
+import EditProfileScene from "./src/scenes/EditProfileScene";
 import MosaicScene from "./src/scenes/MosaicScene";
+import SignUpScene from "./src/scenes/SignUpScene";
+// import FacebookProfileScene from "./src/scenes/FacebookProfileScene";
 import LoginScene from "./src/scenes/LoginScene";
+// import LoginFacebookScene from "./src/scenes/LoginFacebookScene";
 import AroundMeScene from "./src/scenes/AroundMeScene";
 import TchatScene from "./src/scenes/TchatScene";
 import BuddiesTabsScene from "./src/scenes/BuddiesTabsScene";
@@ -63,7 +67,7 @@ export default class App extends Component {
             key={"tab"}
             tabs
             type={"replace"}
-            initial={this.state.user !== null ? true : false}
+            //initial={this.state.user !== null ? true : false}
           >
             <Scene
               key={"search"}
@@ -79,6 +83,7 @@ export default class App extends Component {
               )}
               onRight={() => Actions.myprofile({ userData: Api.getUser() })}
               rightTitle={<Text style={{ color: "white" }}>Mon Profil</Text>}
+              initial={this.state.user !== null ? true : false}
             />
             <Scene
               key="myprofile"
@@ -88,7 +93,9 @@ export default class App extends Component {
               onLeft={() => Actions.search({})}
               leftTitle={<Text style={{ color: "white" }}>Retour</Text>}
               onRight={() => {
-                Api.logOut(Actions.login({}));
+                Api.logOut(() => {
+                  Actions.login({ type: "replace" });
+                });
               }}
               rightTitle={<Text style={{ color: "white" }}>Deconnexion</Text>}
             />
@@ -132,7 +139,6 @@ export default class App extends Component {
               )}
             />
           </Scene>
-
           <Scene
             key={"buddyfinder"}
             titleStyle={{ color: "white" }}
@@ -159,17 +165,18 @@ export default class App extends Component {
             titleStyle={{ color: "white" }}
           />
 
-          {/*<Scene
-            key={"mosaic"}
-            component={MosaicScene}
-            initial={this.state.user !== null ? true : false}
-            hideNavBar={true}
-          />*/}
           <Scene
             key={"userprofile"}
             component={UserProfileScene}
             hideNavBar={false}
             title={"Page Profil"}
+            titleStyle={{ color: "white" }}
+          />
+          <Scene
+            key={"editprofile"}
+            component={EditProfileScene}
+            hideNavBar={false}
+            title={"Edition du Profil"}
             titleStyle={{ color: "white" }}
           />
           <Scene
@@ -180,6 +187,12 @@ export default class App extends Component {
             hideNavBar={true}
           />
           <Scene
+            key={"signup"}
+            component={SignUpScene}
+            title={"Créer un compte"}
+            titleStyle={{ color: "white" }}
+          />
+          <Scene
             key={"tchat"}
             titleStyle={{ color: "white" }}
             title={"Messages"}
@@ -188,6 +201,27 @@ export default class App extends Component {
             //navigationBarStyle={{ backgroundColor: "#ffffff" }}
             component={TchatScene}
           />
+          {/*<Scene
+            key={"facebookprofilescene"}
+            component={FacebookProfileScene}
+            hideNavBar={false}
+            title={"Profil Facebook"}
+            titleStyle={{ color: "white" }}
+          />*/}
+          {/*<Scene
+            key={"loginfacebook"}
+            component={LoginFacebookScene}
+            titleStyle={{ color: "white" }}
+            initial={this.state.user === null ? true : false}
+            hideNavBar={true}
+          />*/}
+          {/*<Scene
+            key={"mosaic"}
+            component={MosaicScene}
+            initial={this.state.user !== null ? true : false}
+            hideNavBar={true}
+          />*/}
+
         </Router>
       );
     }

@@ -33,10 +33,9 @@ export default class LoginScene extends React.Component {
       email: this.state.email,
       password: this.state.password
     };
-    Api.logIn(user, () =>
-      Actions.search({
-        type: "replace"
-      }));
+    Api.logIn(user, () => {
+      Actions.search({ type: "replace" });
+    });
   }
 
   render() {
@@ -66,6 +65,7 @@ export default class LoginScene extends React.Component {
         <Animatable.View animation="fadeInLeft" delay={400}>
           <TextInput
             autoCorrect={false}
+            autoCapitalize="none"
             underlineColorAndroid={"transparent"}
             style={styles.input}
             placeholder="E-mail"
@@ -94,6 +94,18 @@ export default class LoginScene extends React.Component {
             </Text>
           </TouchableOpacity>
         </Animatable.View>
+        <Animatable.View animation="fadeInUp" delay={500}>
+          <TouchableOpacity
+            onPress={() => {
+              Actions.signup({});
+            }}
+            style={styles.login_button}
+          >
+            <Text style={styles.login_text}>
+              S'INSCRIRE
+            </Text>
+          </TouchableOpacity>
+        </Animatable.View>
       </Image>
     );
   }
@@ -105,7 +117,7 @@ const inputWidth = Dimensions.get("window").width - PADDING * 2;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 70,
+    paddingTop: 20,
     alignItems: "center",
     width: null,
     resizeMode: "cover",
@@ -139,12 +151,13 @@ const styles = StyleSheet.create({
     color: Global.moveetColor,
     borderBottomColor: "#59BDB2",
     borderBottomWidth: 5,
-    marginBottom: 30,
+    marginBottom: 10,
     backgroundColor: "transparent"
   },
   login_button: {
     backgroundColor: Global.moveetColor,
     padding: 12,
+    marginBottom: 20,
     borderRadius: 25,
     alignItems: "center",
     width: inputWidth

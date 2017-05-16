@@ -3,6 +3,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   ListView,
+  TextInput,
   ScrollView,
   Image,
   Dimensions,
@@ -20,6 +21,7 @@ import Global from "../Global";
 import Config from "../Config";
 import Fav from "../components/core/Fav";
 import _ from "lodash";
+import ImagePicker from "react-native-image-crop-picker";
 
 let {
   height,
@@ -34,18 +36,7 @@ export default class UserProfileScene extends React.Component {
       expandText: false,
       userProfileInfo: [],
       userFavoriteMovies: []
-      // disable: false
-      // isBuddy: "",
-      // isRequested: "",
-      // isPendingAcceptance: ""
     };
-
-    this.toggleView = this.toggleView.bind(this);
-    // this.sendBuddyRequest = this.sendBuddyRequest.bind(this);
-    // this.cancelBuddyRequest = this.cancelBuddyRequest.bind(this);
-    // this.refuseBuddyRequest = this.refuseBuddyRequest.bind(this);
-    // this.acceptBuddyRequest = this.acceptBuddyRequest.bind(this);
-    // this.removeBuddy = this.removeBuddy.bind(this);
   }
 
   // permet de trouver si la search value apparait dans les valeurs d'un objet. Ici le but est de chercher si le buddy de la rowData est contenu dans le tableau des buddies, buddies requests ou buddies pending du user connecté
@@ -62,38 +53,14 @@ export default class UserProfileScene extends React.Component {
 
   componentDidMount() {
     Api.getBuddies(Api.getUser()._id, userProfileInfo => {
-      // const isBuddy = this.mapObjectValue(
-      //   userProfileInfo.userInfo.account.buddies
-      // );
-      // const isPendingAcceptance = this.mapObjectValue(
-      //   userProfileInfo.userInfo.account.buddiesRequestsReceived
-      // );
-      // const isRequested = this.mapObjectValue(
-      //   userProfileInfo.userInfo.account.buddiesRequestsSent
-      // );
       this.setState({
         userProfileInfo: userProfileInfo.userInfo
-        // isBuddy: isBuddy,
-        // isRequested: isRequested,
-        // isPendingAcceptance: isPendingAcceptance
       });
     });
     Api.getFavoriteMovies(Api.getUser()._id, userFavoriteMovies => {
       this.setState({
         userFavoriteMovies: userFavoriteMovies
       });
-    });
-  }
-
-  openChat(userDataChat) {
-    console.log("on ouvre le chat en cliquant ici");
-
-    Actions.tchat({ userDataChat: userDataChat });
-  }
-
-  toggleView() {
-    this.setState({
-      expandText: !this.state.expandText
     });
   }
 
@@ -145,9 +112,9 @@ export default class UserProfileScene extends React.Component {
               color: "black"
             }}
           >
+
             {this.props.userData.account.favorites.length} {" "}
-            Films dans le pipe, dont{" "}
-            {this.props.userData.matchingMovies.length} en commun avec vous
+            Films dans le pipe
           </Text>
         </View>
       );
@@ -156,10 +123,7 @@ export default class UserProfileScene extends React.Component {
 
   render() {
     console.log("UserProfileScene$userData", this.props.userData);
-    console.log(
-      "this.props.userData.matchingMovies",
-      this.props.userData.matchingMovies
-    );
+
     if (Object.keys(this.state.userProfileInfo).length <= 0) {
       return <View style={{ marginTop: 60 }}><Text>Loading...</Text></View>;
     } else {
@@ -172,12 +136,14 @@ export default class UserProfileScene extends React.Component {
           }}
         >
           <View style={{ alignItems: "center", marginTop: 30 }}>
+
             <Avatar
               height={150}
               width={150}
               borderRadius={75}
               picture={this.props.userData.account.picture}
             />
+
           </View>
           <Text
             style={{
@@ -188,24 +154,54 @@ export default class UserProfileScene extends React.Component {
             }}
           >
             {this.props.userData.account.username}
+            ,
+            {this.props.userData.account.genre}
+            ,
+            {this.props.userData.account.age}
           </Text>
 
           {this.renderUserHeader()}
 
-          <Text
-            style={{ padding: 30 }}
-            numberOfLines={this.state.expandText ? 10 : 3}
-            onPress={this.toggleView}
-          >
+          <Text style={{ paddingHorizontal: 10, paddingVertical: 30 }}>
+            A propos de moi:{"\n"}{"\n"}
             {this.props.userData.account.description}
           </Text>
-          {this.renderSlidesMoveet()}
+          <TouchableOpacity
+            onPress={() =>
+              Actions.editprofile({ userData: this.props.userData })}
+            style={{
+              //marginRight: 100,
+              //marginLeft: 100,
 
+              height: 50,
+              margin: 50,
+              marginTop: 5,
+              alignItems: "center",
+              backgroundColor: Global.moveetColor,
+              borderRadius: 25,
+              borderWidth: 5,
+              borderColor: Global.moveetColor,
+              marginBottom: 15
+            }}
+          >
+            <Text
+              style={{
+                color: "white",
+                padding: 10
+              }}
+            >
+              Editer mes informations
+            </Text>
+          </TouchableOpacity>
+          <View style={{ marginBottom: 60 }}>
+            {this.renderSlidesMoveet()}
+          </View>
         </ScrollView>
       );
     }
   }
 }
+
 var styles = StyleSheet.create({
   wrapper: {},
   slide1: {
