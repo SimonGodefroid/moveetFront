@@ -73,7 +73,13 @@ export default class ResultsScene extends React.Component {
   };
 
   _renderHeader = props => {
-    return <TabBar {...props} />;
+    return (
+      <TabBar
+        {...props}
+        indicatorStyle={{ backgroundColor: "red" }}
+        labelStyle={{ color: "white" }}
+      />
+    );
   };
 
   _renderScene = ({ route }) => {
@@ -103,6 +109,34 @@ export default class ResultsScene extends React.Component {
     }
   };
 
+  renderStatusList(movie) {
+    if (movie.statusList === "comingsoon") {
+      return (
+        <Text
+          style={{
+            color: "white",
+            backgroundColor: "green",
+            padding: 10,
+            textAlign: "center"
+          }}
+        >
+          Bientôt à l'affiche
+        </Text>
+      );
+    }
+    return (
+      <Text
+        style={{
+          color: "green",
+          padding: 10,
+          textAlign: "center"
+        }}
+      >
+        À l'affiche dans {movie.statistics.theaterCount} salles
+      </Text>
+    );
+  }
+
   renderMovieCard(rowData) {
     return (
       <TouchableOpacity onPress={() => Actions.movie({ movie: rowData })}>
@@ -118,9 +152,18 @@ export default class ResultsScene extends React.Component {
             synopsis={rowData.synopsis}
           />
         </View>
-        <View style={{ position: "absolute", bottom: 20, left: 150 }}>
-          <Text>{rowData.statusList}</Text>
-          <Text>
+        <View
+          style={{
+            position: "absolute",
+            bottom: 10,
+            left: 150,
+            flexDirection: "row"
+          }}
+        >
+          <Text style={{ textAlign: "left" }}>
+            {this.renderStatusList(rowData)}
+          </Text>
+          <Text style={{ marginLeft: 20 }}>
             {!isNaN(rowData.statistics.userRating * 2)
               ? rowData.statistics.userRating * 2
               : ""}

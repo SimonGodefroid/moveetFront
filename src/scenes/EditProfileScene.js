@@ -47,10 +47,7 @@ export default class EditProfileScene extends React.Component {
       age: this.props.userData.account.age,
       genre: this.props.userData.account.genre
     };
-
-    this.toggleView = this.toggleView.bind(this);
   }
-  DESCRIPTION = this.props.userData.account.description;
 
   // permet de trouver si la search value apparait dans les valeurs d'un objet. Ici le but est de chercher si le buddy de la rowData est contenu dans le tableau des buddies, buddies requests ou buddies pending du user connecté
   mapObjectValue(object) {
@@ -107,16 +104,28 @@ export default class EditProfileScene extends React.Component {
     return oldH / oldW * newW;
   }
 
-  toggleView() {
+  saveUserProfile() {
+    console.log("saveUserProfile is executed");
+    Api.saveUserProfile({
+      username: this.state.username,
+      age: this.state.age,
+      genre: this.state.genre,
+      description: this.state.description
+    });
     this.setState({
-      expandText: !this.state.expandText
+      username: this.state.username,
+      age: this.state.age,
+      genre: this.state.genre,
+      description: this.state.description
     });
   }
 
   render() {
     console.log("UserProfileScene$userData", this.props.userData);
     console.log("this.state.username", this.state.username);
+    console.log("this.state.username", this.state.age);
     console.log("this.state.genre", this.state.genre);
+    console.log("this.state.genre", this.state.description);
     if (Object.keys(this.state.userProfileInfo).length <= 0) {
       return <View style={{ marginTop: 60 }}><Text>Loading...</Text></View>;
     } else {
@@ -257,7 +266,9 @@ export default class EditProfileScene extends React.Component {
             }}
           />
           <TouchableOpacity
-            onPress={() => Actions.editprofile({})}
+            onPress={() => {
+              this.saveUserProfile();
+            }}
             style={{
               //marginRight: 100,
               //marginLeft: 100,

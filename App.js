@@ -74,11 +74,12 @@ export default class App extends Component {
               titleStyle={{ color: "white" }}
               title={"Search"}
               component={SearchScene}
+              initial
               icon={props => (
                 <IconMaterialIcons
                   name={"local-movies"}
                   size={30}
-                  color={props.selected ? "#AAA" : "#000"}
+                  color={props.selected ? Global.heartColor : "#FFF"}
                 />
               )}
               onRight={() => Actions.myprofile({ userData: Api.getUser() })}
@@ -108,7 +109,7 @@ export default class App extends Component {
                 <IconMaterialCommunityIcons
                   name={"cards-outline"}
                   size={30}
-                  color={props.selected ? "#AAA" : "#000"}
+                  color={props.selected ? Global.heartColor : "#FFF"}
                 />
               )}
             />
@@ -121,7 +122,7 @@ export default class App extends Component {
                 <IconMaterialIcons
                   name={"chat-bubble-outline"}
                   size={30}
-                  color={props.selected ? "#AAA" : "#000"}
+                  color={props.selected ? Global.heartColor : "#FFF"}
                 />
               )}
             />
@@ -134,7 +135,7 @@ export default class App extends Component {
                 <IconMaterialCommunityIcons
                   name={"map-marker"}
                   size={30}
-                  color={props.selected ? "#AAA" : "#000"}
+                  color={props.selected ? Global.heartColor : "#FFF"}
                 />
               )}
             />
@@ -248,7 +249,7 @@ const styles = StyleSheet.create({
   tabBarStyle: {
     borderTopWidth: 0.5,
     borderColor: "#b7b7b7",
-    backgroundColor: "white",
+    backgroundColor: "black",
     opacity: 1
   }
 });

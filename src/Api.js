@@ -89,8 +89,26 @@ class Api {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ imagePath })
+      body: JSON.stringify({
+        imagePath
+      })
     });
+  }
+
+  saveUserProfile(userInfo, callback) {
+    console.log("saveUserProfile userInfo", userInfo);
+    fetch(
+      `${Config.host}/api/user/${this.getUser()._id}/updateProfileInformation/`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          userInfo
+        })
+      }
+    );
   }
 
   buddyFinder(movieId, userId, callback) {
@@ -99,6 +117,20 @@ class Api {
       .then(buddiesFound => {
         console.log("buddiesFound for the movie fetched", buddiesFound);
         callback(buddiesFound);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  fetchUser(userId, callback) {
+    //console.log("getBuddies userId is : ", userId);
+    fetch(`${Config.host}/api/user/show/${userId}`)
+      .then(res => res.json())
+      .then(user => {
+        console.log("user fetched", user);
+        this.setUser(user);
+        callback(user);
       })
       .catch(error => {
         console.log(error);
@@ -118,6 +150,7 @@ class Api {
         console.log(error);
       });
   }
+
   getAllUsers(userId, callback) {
     //console.log("getAllUsers userId is : ", userId);
     fetch(`${Config.host}/api/user/all`)
@@ -161,6 +194,8 @@ class Api {
       });
   }
 
+  // créer fetch user qui save et set user
+
   authenticate(user) {
     Store.save("user", user).then(() => {
       console.log("Saved");
@@ -168,15 +203,17 @@ class Api {
       this.setUser(user);
     });
   }
-  getUsername() {
-    const user = this.getUser();
-    if (user.account) {
-      if (user.account.username) {
-        return user.account.username;
-      }
-    }
-    return "";
-  }
+
+  // getUsername() {
+  //   const user = this.getUser();
+  //   if (user.account) {
+  //     if (user.account.username) {
+  //       return user.account.username;
+  //     }
+  //   }
+  //   return "";
+  // }
+
   getUser() {
     return this.user;
   }
@@ -220,7 +257,7 @@ class Api {
       .then(json => {
         if (!json.error) {
           this.authenticate(json);
-          console.log("logged");
+          console.log("Api$Authenticate = logged");
           console.log(json);
           callback(json);
         } else {

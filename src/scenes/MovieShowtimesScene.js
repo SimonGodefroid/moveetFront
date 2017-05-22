@@ -89,6 +89,7 @@ export default class MovieShowtimesScene extends Component {
   }
 
   _renderContent(section) {
+    console.log("section", section);
     const screenings = section.movieShowtimes.map((movie, index) => {
       return (
         <View key={index}>
@@ -97,41 +98,50 @@ export default class MovieShowtimesScene extends Component {
               textAlign: "center",
               backgroundColor: "black",
               color: "white",
-
               marginBottom: 5
             }}
           >
             {movie.version.$}
+            {" "}
+            -
+            {" "}
+            {movie.version.original === "true" && movie.version.$ !== "Français"
+              ? "VO"
+              : "VF"}
           </Text>
           {movie.scr.map((date, index1) => {
             return (
-              <View style={{ flexDirection: "row" }} key={index1}>
+              <View key={index1}>
                 <Text key={index1} style={{ fontSize: 14 }}>
                   {date.d.split("-").reverse().join("/")}{"\n"}
                   <View
                     key={index1}
                     style={{
                       height: 40,
-                      width: 0,
+                      width: width,
+
                       flexDirection: "row",
                       alignItems: "center"
                     }}
                   >
                     {date.t.map((time, index2) => {
                       return (
-                        <View
+                        <Text
+                          style={{
+                            textAlign: "center",
+                            height: 20,
+                            width: 60
+                          }}
                           key={index2}
-                          style={{ height: 30, width: 40, margin: 10 }}
+                          onPress={() =>
+                            console.log(
+                              "time.$ from accordion",
+                              time.$,
+                              time.code
+                            )}
                         >
-                          <Text
-                            style={{ textAlign: "center", paddingTop: 2 }}
-                            key={index2}
-                            onPress={() =>
-                              console.log("time.$ from accordion", time.$)}
-                          >
-                            {time.$}
-                          </Text>
-                        </View>
+                          {time.$}
+                        </Text>
                       );
                     })}
                   </View>
@@ -166,6 +176,9 @@ export default class MovieShowtimesScene extends Component {
   }
 
   render() {
+    if (Object.keys(this.state.movieShowtimesData).length === 0) {
+      return <View style={{ marginTop: 200 }}><Text>Loading</Text></View>;
+    }
     return (
       <ScrollView style={{ marginTop: 70 }}>
         <Accordion

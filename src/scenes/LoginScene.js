@@ -34,7 +34,7 @@ export default class LoginScene extends React.Component {
       password: this.state.password
     };
     Api.logIn(user, () => {
-      Actions.search({ type: "replace" });
+      Actions.tab({ type: "replace" });
     });
   }
 

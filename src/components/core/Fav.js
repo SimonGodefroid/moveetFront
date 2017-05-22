@@ -57,7 +57,7 @@ class Fav extends React.Component {
           name={this.state.heart ? "ios-heart" : "ios-heart-outline"}
           size={this.props.size ? this.props.size : 35}
           style={{ backgroundColor: "transparent" }}
-          color={Global.moveetColor}
+          color={Global.heartColor}
         />
       </TouchableOpacity>
     );

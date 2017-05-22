@@ -83,7 +83,13 @@ export default class AroundMeScene extends React.Component {
   };
 
   _renderHeader = props => {
-    return <TabBar {...props} />;
+    return (
+      <TabBar
+        {...props}
+        indicatorStyle={{ backgroundColor: "red" }}
+        labelStyle={{ color: "white" }}
+      />
+    );
   };
 
   _renderScene = ({ route }) => {

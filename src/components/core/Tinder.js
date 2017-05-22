@@ -137,7 +137,8 @@ export default class Tinder extends React.Component {
         handleYup={this.handleYup}
         handleNope={this.handleNope}
         handleMaybe={this.handleMaybe}
-        hasMaybeAction
+        yupText={"Oui !"}
+        nopeText={"Non !"}
       />
     );
   }

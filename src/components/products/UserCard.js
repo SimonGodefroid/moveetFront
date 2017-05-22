@@ -43,7 +43,9 @@ export default class UserCard extends React.Component {
             picture={this.props.picture}
           />
         </View>
-        <View style={[styles.overlay, { backgroundColor: "black" }]}>
+        <View
+          style={[styles.overlay, { backgroundColor: "red", opacity: 0.5 }]}
+        >
           <View style={styles.textView}>
             <Text style={styles.textHeader}>{this.props.username}</Text>
             <Text style={styles.textContent}>

@@ -6,7 +6,8 @@ const goldColor = "#E2970D";
 const fourthColor = "#92CFCD";
 const fifthColor = "#26766B";
 const sixthColor = "#2B4A46";
-const moveetColor = "#EF807E";
+const heartColor = "#EF807E";
+const moveetColor = "#000";
 
 /* fonts */
 const mainFontBold = "Nunito-Bold";
@@ -37,6 +38,7 @@ export default {
   fifthColor: fifthColor,
   sixthColor: sixthColor,
   moveetColor: moveetColor,
+  heartColor: heartColor,
 
   mainFontBold: mainFontBold,
   mainFont: mainFont,

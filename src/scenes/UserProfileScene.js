@@ -125,7 +125,7 @@ export default class UserProfileScene extends React.Component {
     }*/
     }
     return (
-      <View style={{alignItems:'center'}}>
+      <View style={{ alignItems: "center", marginBottom: 30 }}>
         {this.renderButton(
           "Chatter avec ",
           "",
@@ -237,7 +237,13 @@ export default class UserProfileScene extends React.Component {
     }
     return (
       <View>
-        <Swiper height={200}>
+        <Swiper
+          height={200}
+          dotColor={"black"}
+          activeDotColor={"red"}
+          dotStyle={{ marginBottom: -80 }}
+          activeDotStyle={{ marginBottom: -80 }}
+        >
           {slides}
         </Swiper>
       </View>
@@ -251,7 +257,8 @@ export default class UserProfileScene extends React.Component {
           <Text
             style={{
               textAlign: "center",
-              paddingTop: 20,
+              //paddingTop: 20,
+              padding: 20,
               fontSize: 20,
               color: "black"
             }}
@@ -266,7 +273,7 @@ export default class UserProfileScene extends React.Component {
           <Text
             style={{
               textAlign: "center",
-              paddingTop: 20,
+              paddingTop: 10,
               fontSize: 20,
               color: "black"
             }}
@@ -297,7 +304,7 @@ export default class UserProfileScene extends React.Component {
             //backgroundColor: "blue"
           }}
         >
-          <View style={{ alignItems: "center", marginTop: 30 }}>
+          <View style={{ alignItems: "center", marginTop: 10 }}>
             <Avatar
               height={150}
               width={150}
@@ -308,7 +315,7 @@ export default class UserProfileScene extends React.Component {
           <Text
             style={{
               textAlign: "center",
-              paddingTop: 20,
+              paddingTop: 10,
               fontSize: 20,
               color: "black"
             }}
@@ -319,7 +326,7 @@ export default class UserProfileScene extends React.Component {
           {this.renderUserHeader()}
 
           <Text
-            style={{ padding: 30 }}
+            style={{ padding: 10 }}
             numberOfLines={this.state.expandText ? 10 : 3}
             onPress={this.toggleView}
           >
@@ -340,11 +347,12 @@ var styles = StyleSheet.create({
   slide1: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#9DD6EB"
+    backgroundColor: "black"
   },
   text: {
     color: "#fff",
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "white"
   }
 });

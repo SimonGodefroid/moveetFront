@@ -10,6 +10,7 @@ import {
 } from "react-native";
 
 let textLimit = 150;
+let titleLimit = 36;
 
 let {
   height,
@@ -20,7 +21,8 @@ export default class MovieCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      maxlimit: 50
+      maxlimit: 50,
+      titleMaxLimit: 36
     };
   }
   render() {
@@ -42,13 +44,15 @@ export default class MovieCard extends React.Component {
         />
         <View style={{ paddingLeft: 10 }}>
           <Text style={{ fontSize: 20, fontWeight: "bold", width: 200 }}>
-            {this.props.title}
+            {this.props.title.length > titleLimit
+              ? this.props.title.substring(0, titleLimit - 3) + "..."
+              : this.props.title}
           </Text>
           <View style={{ width: 200 }}>
             <Text>
               {this.props.synopsis.length > textLimit
                 ? this.props.synopsis.substring(0, textLimit - 3) + "..."
-                : this.props.synopsis.length}
+                : this.props.synopsis}
             </Text>
           </View>
         </View>

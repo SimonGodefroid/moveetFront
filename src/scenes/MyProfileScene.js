@@ -11,7 +11,7 @@ import {
   View
 } from "react-native";
 import Api from "../Api.js";
-//import MovieCard from "../components/products/MovieCard";
+import MovieCard from "../components/products/MovieCard";
 import MovieQuickCard from "../components/products/MovieQuickCard";
 import Avatar from "../components/user/Avatar";
 import Icon from "../components/core/Icon";
@@ -77,8 +77,14 @@ export default class UserProfileScene extends React.Component {
       </TouchableOpacity>
     ));
     return (
-      <View>
-        <Swiper height={200}>
+      <View style={{ marginBottom: 20 }}>
+        <Swiper
+          height={200}
+          dotColor={"black"}
+          activeDotColor={"red"}
+          dotStyle={{ marginBottom: -80 }}
+          activeDotStyle={{ marginBottom: -80 }}
+        >
           {slides}
         </Swiper>
       </View>
@@ -107,7 +113,7 @@ export default class UserProfileScene extends React.Component {
           <Text
             style={{
               textAlign: "center",
-              paddingTop: 20,
+              paddingTop: 10,
               fontSize: 20,
               color: "black"
             }}
@@ -135,7 +141,7 @@ export default class UserProfileScene extends React.Component {
             //backgroundColor: "blue"
           }}
         >
-          <View style={{ alignItems: "center", marginTop: 30 }}>
+          <View style={{ alignItems: "center", marginTop: 10 }}>
 
             <Avatar
               height={150}
@@ -148,7 +154,7 @@ export default class UserProfileScene extends React.Component {
           <Text
             style={{
               textAlign: "center",
-              paddingTop: 20,
+              paddingTop: 10,
               fontSize: 20,
               color: "black"
             }}
@@ -162,7 +168,7 @@ export default class UserProfileScene extends React.Component {
 
           {this.renderUserHeader()}
 
-          <Text style={{ paddingHorizontal: 10, paddingVertical: 30 }}>
+          <Text style={{ paddingHorizontal: 10, paddingVertical: 10 }}>
             A propos de moi:{"\n"}{"\n"}
             {this.props.userData.account.description}
           </Text>
@@ -207,11 +213,12 @@ var styles = StyleSheet.create({
   slide1: {
     flex: 1,
     justifyContent: "center",
-    backgroundColor: "#9DD6EB"
+    backgroundColor: "black"
   },
   text: {
     color: "#fff",
     fontSize: 30,
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "white"
   }
 });
