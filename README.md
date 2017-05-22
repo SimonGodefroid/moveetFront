@@ -12,7 +12,7 @@
 
 ## Movies Browser
 
-<img src="https://lh5.googleusercontent.com/otu89J8FTvtU0p8L1J5hEwfoodoNaL2i1MYctOMMJQBxmHx2H7eKjAMnyrKL-e40vCmZzNRacHi31Ew=w1280-h676" width="360">
+<img src="https://cloud.githubusercontent.com/assets/17337190/26315588/ed4d7d22-3f11-11e7-9b01-1e68511be96b.gif" width="360">
 
 ## Buddies Finder & Chat
 
@@ -20,8 +20,8 @@
 
 
 ## Movies Swiper
-<img src="https://lh5.googleusercontent.com/zLeq9NgewIUuUq-TiTxdCfjfG8otXyId_ZA8tFNkJtqBx0BW4bs_oRoLV7BL7T5in3pL1y8l3_XTv_M=w1280-h676" width="360">
+<img src="https://cloud.githubusercontent.com/assets/17337190/26315587/ed28df44-3f11-11e7-9fbe-65f3dc27d4cb.gif" width="360">
 
 
 ## User Profile
-<img src="https://lh6.googleusercontent.com/EpMXP-km2jPhlwFN37U1CyeSBTUvMmGSYgGyzM-NBnRsdfZ2hLe-u3BWaN_2tHhaQFaF2yShMhMPuao=w1280-h676" width="360">
+<img src="https://cloud.githubusercontent.com/assets/17337190/26315617/fdf14abe-3f11-11e7-958a-42bbb84539e7.gif" width="360">
