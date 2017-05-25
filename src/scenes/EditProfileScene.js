@@ -20,7 +20,7 @@ import MovieQuickCard from "../components/products/MovieQuickCard";
 import Avatar from "../components/user/Avatar";
 import Icon from "../components/core/Icon";
 import Swiper from "react-native-swiper";
-import { Actions } from "react-native-router-flux";
+import { Actions, ActionConst } from "react-native-router-flux";
 import Global from "../Global";
 import Config from "../Config";
 import Fav from "../components/core/Fav";
@@ -105,13 +105,21 @@ export default class EditProfileScene extends React.Component {
   }
 
   saveUserProfile() {
-    console.log("saveUserProfile is executed");
-    Api.saveUserProfile({
-      username: this.state.username,
-      age: this.state.age,
-      genre: this.state.genre,
-      description: this.state.description
-    });
+    Api.saveUserProfile(
+      {
+        username: this.state.username,
+        age: this.state.age,
+        genre: this.state.genre,
+        description: this.state.description
+      },
+      // Api.fetchUser(Api.getUser()._id, user => {
+      //   console.log("coucou user ", user);
+      // })
+
+      user => {
+        Actions.pop({ refresh: { user: user } });
+      }
+    );
     this.setState({
       username: this.state.username,
       age: this.state.age,
@@ -121,11 +129,6 @@ export default class EditProfileScene extends React.Component {
   }
 
   render() {
-    console.log("UserProfileScene$userData", this.props.userData);
-    console.log("this.state.username", this.state.username);
-    console.log("this.state.username", this.state.age);
-    console.log("this.state.genre", this.state.genre);
-    console.log("this.state.genre", this.state.description);
     if (Object.keys(this.state.userProfileInfo).length <= 0) {
       return <View style={{ marginTop: 60 }}><Text>Loading...</Text></View>;
     } else {

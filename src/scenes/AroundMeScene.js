@@ -97,7 +97,7 @@ export default class AroundMeScene extends React.Component {
       case "1":
         if (this.state.latitude === "" || this.state.latitude === 0) {
           return (
-            <View>
+            <View style={{ margin: 50 }}>
               <Text>Vous devez d'abord autoriser la géolocalisation</Text>
             </View>
           );

@@ -9,8 +9,11 @@ import {
   Text,
   View
 } from "react-native";
+import Global from "../Global.js";
 import Api from "../Api.js";
 import MovieCard from "../components/products/MovieCard";
+import IconMaterialCommunityIcons
+  from "react-native-vector-icons/MaterialCommunityIcons";
 import Avatar from "../components/user/Avatar";
 import { Actions } from "react-native-router-flux";
 import { TabViewAnimated, TabBar } from "react-native-tab-view";
@@ -163,11 +166,26 @@ export default class ResultsScene extends React.Component {
           <Text style={{ textAlign: "left" }}>
             {this.renderStatusList(rowData)}
           </Text>
-          <Text style={{ marginLeft: 20 }}>
+          <Text
+            style={{
+              marginLeft: 20,
+              zIndex: 1000,
+              backgroundColor: "transparent"
+            }}
+          >
             {!isNaN(rowData.statistics.userRating * 2)
               ? rowData.statistics.userRating * 2
               : ""}
           </Text>
+          <IconMaterialCommunityIcons
+            name={"popcorn"}
+            size={30}
+            color={
+              rowData.statistics.userRating * 2 > 5 ? Global.heartColor : "red"
+            }
+            style={{ position: "absolute", right: -4, bottom: -4 }}
+          />
+
         </View>
       </TouchableOpacity>
     );

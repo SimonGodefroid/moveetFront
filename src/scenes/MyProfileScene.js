@@ -45,7 +45,7 @@ export default class UserProfileScene extends React.Component {
       .map(function(x) {
         return x._id.toString();
       })
-      .indexOf(this.props.userData._id) === -1
+      .indexOf(this.state.userProfileInfo._id) === -1
       ? false
       : true;
     return result;
@@ -62,6 +62,10 @@ export default class UserProfileScene extends React.Component {
         userFavoriteMovies: userFavoriteMovies
       });
     });
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log("nextProps", nextProps);
+    this.setState({ userProfileInfo: nextProps.user });
   }
 
   renderSlidesMoveet() {
@@ -92,7 +96,7 @@ export default class UserProfileScene extends React.Component {
   }
 
   renderUserHeader() {
-    if (!this.props.userData.matchingMovies) {
+    if (!this.state.userProfileInfo.matchingMovies) {
       return (
         <View>
           <Text
@@ -103,7 +107,9 @@ export default class UserProfileScene extends React.Component {
               color: "black"
             }}
           >
-            {this.props.userData.account.favorites.length} Films dans le pipe
+            {this.state.userProfileInfo.account.favorites.length}
+            {" "}
+            Films dans le pipe
           </Text>
         </View>
       );
@@ -119,7 +125,7 @@ export default class UserProfileScene extends React.Component {
             }}
           >
 
-            {this.props.userData.account.favorites.length} {" "}
+            {this.state.userProfileInfo.account.favorites.length} {" "}
             Films dans le pipe
           </Text>
         </View>
@@ -128,8 +134,13 @@ export default class UserProfileScene extends React.Component {
   }
 
   render() {
-    console.log("UserProfileScene$userData", this.props.userData);
-
+    console.log(
+      "MyProfileScene$this.state",
+      !this.state.userProfileInfo.account
+        ? ""
+        : this.state.userProfileInfo.account.username
+    );
+    console.log("Myprofile API.getUser()", Api.getUser());
     if (Object.keys(this.state.userProfileInfo).length <= 0) {
       return <View style={{ marginTop: 60 }}><Text>Loading...</Text></View>;
     } else {
@@ -142,12 +153,11 @@ export default class UserProfileScene extends React.Component {
           }}
         >
           <View style={{ alignItems: "center", marginTop: 10 }}>
-
             <Avatar
               height={150}
               width={150}
               borderRadius={75}
-              picture={this.props.userData.account.picture}
+              picture={this.state.userProfileInfo.account.picture}
             />
 
           </View>
@@ -159,22 +169,22 @@ export default class UserProfileScene extends React.Component {
               color: "black"
             }}
           >
-            {this.props.userData.account.username}
+            {this.state.userProfileInfo.account.username}
             ,
-            {this.props.userData.account.genre}
+            {this.state.userProfileInfo.account.genre}
             ,
-            {this.props.userData.account.age}
+            {this.state.userProfileInfo.account.age}
           </Text>
 
           {this.renderUserHeader()}
 
           <Text style={{ paddingHorizontal: 10, paddingVertical: 10 }}>
             A propos de moi:{"\n"}{"\n"}
-            {this.props.userData.account.description}
+            {this.state.userProfileInfo.account.description}
           </Text>
           <TouchableOpacity
             onPress={() =>
-              Actions.editprofile({ userData: this.props.userData })}
+              Actions.editprofile({ userData: this.state.userProfileInfo })}
             style={{
               //marginRight: 100,
               //marginLeft: 100,

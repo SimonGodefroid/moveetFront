@@ -18,8 +18,7 @@ export default class MyCustomCalloutView extends React.Component {
     return (
       <TouchableOpacity
         onPress={() => {
-          console.log("coucou press");
-          console.log("this.props.code", this.props.code);
+          Actions.theater({ theater: this.props });
         }}
         style={{ width: 200 }}
       >

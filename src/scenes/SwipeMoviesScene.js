@@ -28,6 +28,10 @@ let {
 
 export default class SwiperMoviesScene extends React.Component {
   render() {
-    return <Tinder style={{ flex: 1 }} />;
+    return (
+      <View style={{ flex: 1, marginBottom: 40 }}>
+        <Tinder style={{ flex: 1 }} />
+      </View>
+    );
   }
 }

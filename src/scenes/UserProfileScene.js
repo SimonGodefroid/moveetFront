@@ -135,6 +135,19 @@ export default class UserProfileScene extends React.Component {
       </View>
     );
   }
+
+  renderInviteButton() {
+    return (
+      <View style={{ alignItems: "center", marginBottom: 30 }}>
+        {this.renderButton(
+          "Proposer un film à ",
+          this.props.userData.account.username,
+          "",
+          () => this.openChat(this.props.userData)
+        )}
+      </View>
+    );
+  }
   // le composant bouton prend pour arguments un texte et une méthode.
   renderButton(text, text2, text3, method) {
     return (
@@ -335,6 +348,7 @@ export default class UserProfileScene extends React.Component {
           {this.renderSlidesMoveet()}
           <View>
             {this.renderInteractionButtons()}
+            {this.renderInviteButton()}
           </View>
 
         </ScrollView>

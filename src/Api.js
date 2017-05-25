@@ -65,7 +65,7 @@ class Api {
     fetch(`${Config.host}/api/user/${userId}/favorites`)
       .then(res => res.json())
       .then(favorites => {
-        console.log("favorite movies fetched", favorites);
+        //console.log("favorite movies fetched", favorites);
         callback(favorites);
       })
       .catch(error => {
@@ -96,7 +96,6 @@ class Api {
   }
 
   saveUserProfile(userInfo, callback) {
-    console.log("saveUserProfile userInfo", userInfo);
     fetch(
       `${Config.host}/api/user/${this.getUser()._id}/updateProfileInformation/`,
       {
@@ -108,7 +107,12 @@ class Api {
           userInfo
         })
       }
-    );
+    )
+      .then(res => res.json())
+      .then(res => {
+        console.log("res", res);
+        callback(res);
+      });
   }
 
   buddyFinder(movieId, userId, callback) {
@@ -124,12 +128,11 @@ class Api {
   }
 
   fetchUser(userId, callback) {
-    //console.log("getBuddies userId is : ", userId);
+    console.log("fetchUser userId is : ", userId);
     fetch(`${Config.host}/api/user/show/${userId}`)
       .then(res => res.json())
       .then(user => {
         console.log("user fetched", user);
-        this.setUser(user);
         callback(user);
       })
       .catch(error => {
@@ -143,7 +146,7 @@ class Api {
     fetch(`${Config.host}/api/user/show/${userId}`)
       .then(res => res.json())
       .then(buddies => {
-        console.log("buddies fetched", buddies);
+        //console.log("buddies fetched", buddies);
         callback(buddies);
       })
       .catch(error => {
@@ -153,7 +156,7 @@ class Api {
 
   getAllUsers(userId, callback) {
     //console.log("getAllUsers userId is : ", userId);
-    fetch(`${Config.host}/api/user/all`)
+    fetch(`${Config.host}/api/user/all?userId=${userId}`)
       .then(res => res.json())
       .then(AllUsers => {
         console.log("AllUsers fetched", AllUsers);
@@ -167,6 +170,23 @@ class Api {
   getMovieShowtime(movieId, location, callback) {
     fetch(
       `${Config.host}/api/movies/showtimes?movie=${movieId}&lat=${location.latitude}&long=${location.longitude}&count=20`
+    )
+      .then(res => res.json())
+      .then(movieShowtimes => {
+        console.log(
+          "movieShowtimes fetched",
+          movieShowtimes.showtimes.feed.theaterShowTimes
+        );
+        callback(movieShowtimes);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  getTheaterShowtime(theater, location, callback) {
+    fetch(
+      `${Config.host}/api/movies/showtimes?movie=&lat=${location.latitude}&long=${location.longitude}&theater=${theater}&count=20`
     )
       .then(res => res.json())
       .then(movieShowtimes => {
@@ -219,7 +239,7 @@ class Api {
   }
   setUser(user) {
     this.user = user;
-    console.log("user is", this.user);
+    console.log("Set User user is", this.user);
   }
 
   signUp(user = {}, callback) {

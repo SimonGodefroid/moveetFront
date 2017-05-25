@@ -150,7 +150,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     width: 300,
-    height: 300
+    height: 300,
+    marginTop: 40
   },
   noMoreCardsText: {
     fontSize: 22

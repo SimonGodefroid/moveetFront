@@ -1,4 +1,7 @@
-import React, { Component, PropTypes } from "react";
+import React, {
+  Component,
+  PropTypes
+} from "react";
 import {
   StyleSheet,
   Text,
@@ -13,12 +16,12 @@ import {
   Dimensions,
   StatusBar
 } from "react-native";
-import { Actions } from "react-native-router-flux";
+import {
+  Actions
+} from "react-native-router-flux";
 import Api from "../Api";
 import Global from "../Global";
 import * as Animatable from "react-native-animatable";
-import FBSDK, { LoginManager } from "react-native-fbsdk";
-import { FBLogin, FBLoginManager } from "react-native-facebook-login";
 let {
   height,
   width
@@ -40,74 +43,133 @@ export default class SignUpScene extends React.Component {
       username: this.state.username
     };
     Api.signUp(user, () =>
-      Actions.search({
+      Actions.tab({
         type: "replace"
       }));
   }
 
   render() {
-    return (
-      <ScrollView>
-        <Image
-          source={require("../../assets/img/bg-v.png")}
-          style={styles.container}
-        >
-          <StatusBar barStyle="dark-content" />
-          <View style={styles.logo_container}>
-            <Image
-              source={require("../../assets/img/logo.png")}
-              style={styles.logo}
-            />
-            <Text style={styles.title}>
-              MOVEET
-            </Text>
-          </View>
-          <View>
-            <TextInput
-              autoCorrect={false}
-              underlineColorAndroid={"transparent"}
-              style={styles.input}
-              placeholder="Username"
-              onChangeText={username => this.setState({ username })}
-              value={this.state.username}
-            />
-          </View>
-          <View>
-            <TextInput
-              autoCorrect={false}
-              underlineColorAndroid={"transparent"}
-              style={styles.input}
-              placeholder="E-mail"
-              autoCapitalize="none"
-              keyboardType="email-address"
-              onChangeText={email => this.setState({ email })}
-              value={this.state.email}
-            />
-          </View>
-          <View>
-            <TextInput
-              autoCorrect={false}
-              underlineColorAndroid={"transparent"}
-              style={styles.input}
-              placeholder="Password"
-              secureTextEntry={true}
-              onChangeText={password => this.setState({ password })}
-              value={this.state.password}
-            />
-          </View>
+    return ( <
+      ScrollView >
+      <
+      Image source = {
+        require("../../assets/img/bg-v.png")
+      }
+      style = {
+        styles.container
+      } >
+      <
+      StatusBar barStyle = "dark-content" / >
+      <
+      View style = {
+        styles.logo_container
+      } >
+      <
+      Image source = {
+        require("../../assets/img/logo.png")
+      }
+      style = {
+        styles.logo
+      }
+      /> <
+      Text style = {
+        styles.title
+      } >
+      MOVEET <
+      /Text> < /
+      View > <
+      View >
+      <
+      TextInput autoCorrect = {
+        false
+      }
+      underlineColorAndroid = {
+        "transparent"
+      }
+      style = {
+        styles.input
+      }
+      placeholder = "Username"
+      onChangeText = {
+        username => this.setState({
+          username
+        })
+      }
+      value = {
+        this.state.username
+      }
+      /> < /
+      View > <
+      View >
+      <
+      TextInput autoCorrect = {
+        false
+      }
+      underlineColorAndroid = {
+        "transparent"
+      }
+      style = {
+        styles.input
+      }
+      placeholder = "E-mail"
+      autoCapitalize = "none"
+      keyboardType = "email-address"
+      onChangeText = {
+        email => this.setState({
+          email
+        })
+      }
+      value = {
+        this.state.email
+      }
+      /> < /
+      View > <
+      View >
+      <
+      TextInput autoCorrect = {
+        false
+      }
+      underlineColorAndroid = {
+        "transparent"
+      }
+      style = {
+        styles.input
+      }
+      placeholder = "Password"
+      secureTextEntry = {
+        true
+      }
+      onChangeText = {
+        password => this.setState({
+          password
+        })
+      }
+      value = {
+        this.state.password
+      }
+      /> < /
+      View >
 
-          <View>
-            <TouchableOpacity
-              onPress={this.onSubmitPress}
-              style={styles.login_button}
-            >
-              <Text style={styles.login_text}>
-                CREER MON COMPTE !
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </Image>
-      </ScrollView>
+      <
+      View >
+      <
+      TouchableOpacity onPress = {
+        this.onSubmitPress
+      }
+      style = {
+        styles.login_button
+      } >
+      <
+      Text style = {
+        styles.login_text
+      } >
+      CREER MON COMPTE!
+      <
+      /Text> < /
+      TouchableOpacity > <
+      /View> < /
+      Image > <
+      /ScrollView>
     );
   }
 }

@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, StatusBar } from "react-native";
 
 import { Router, Scene } from "react-native-router-flux";
-import Icon from "react-native-vector-icons/Ionicons";
+import IconIonicons from "react-native-vector-icons/Ionicons";
+import IconFontAwesome from "react-native-vector-icons/FontAwesome";
 import IconMaterialCommunityIcons
   from "react-native-vector-icons/MaterialCommunityIcons";
 import IconMaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -17,6 +18,7 @@ import LoginScene from "./src/scenes/LoginScene";
 // import LoginFacebookScene from "./src/scenes/LoginFacebookScene";
 import AroundMeScene from "./src/scenes/AroundMeScene";
 import TchatScene from "./src/scenes/TchatScene";
+import TheaterScene from "./src/scenes/TheaterScene";
 import BuddiesTabsScene from "./src/scenes/BuddiesTabsScene";
 import BuddyFinderScene from "./src/scenes/BuddyFinderScene";
 import UserProfileScene from "./src/scenes/UserProfileScene";
@@ -47,7 +49,7 @@ export default class App extends Component {
     }
   }
   render() {
-    console.log(this.state.user);
+    console.log("App this.state.user ", this.state.user);
     if (this.state.user === undefined) {
       console.log("loading...", this.state.user);
       return <Loading />;
@@ -72,7 +74,7 @@ export default class App extends Component {
             <Scene
               key={"search"}
               titleStyle={{ color: "white" }}
-              title={"Search"}
+              title={"Moveet"}
               component={SearchScene}
               initial
               icon={props => (
@@ -82,24 +84,19 @@ export default class App extends Component {
                   color={props.selected ? Global.heartColor : "#FFF"}
                 />
               )}
-              onRight={() => Actions.myprofile({ userData: Api.getUser() })}
-              rightTitle={<Text style={{ color: "white" }}>Mon Profil</Text>}
+              //onRight={() => Actions.myprofile({ userData: Api.getUser() })}
+              onRight={() => Actions.myprofile({})}
+              rightTitle={
+                <IconFontAwesome
+                  name={"user-circle"}
+                  size={30}
+                  color={"white"}
+                />
+              }
+              //<Text style={{ color: "white" }}>Mon Profil</Text>}
               initial={this.state.user !== null ? true : false}
             />
-            <Scene
-              key="myprofile"
-              component={MyProfileScene}
-              title="Mon Profil"
-              titleStyle={{ color: "white" }}
-              onLeft={() => Actions.search({})}
-              leftTitle={<Text style={{ color: "white" }}>Retour</Text>}
-              onRight={() => {
-                Api.logOut(() => {
-                  Actions.login({ type: "replace" });
-                });
-              }}
-              rightTitle={<Text style={{ color: "white" }}>Deconnexion</Text>}
-            />
+
             <Scene
               key={"moviesswiper"}
               titleStyle={{ color: "white" }}
@@ -140,6 +137,27 @@ export default class App extends Component {
               )}
             />
           </Scene>
+          <Scene
+            key="myprofile"
+            component={MyProfileScene}
+            title="Mon Profil"
+            titleStyle={{ color: "white" }}
+            onLeft={() => Actions.search({})}
+            leftTitle={<Text style={{ color: "white" }}>Retour</Text>}
+            onRight={() => {
+              Api.logOut(() => {
+                Actions.login({ type: "replace" });
+              });
+            }}
+            rightTitle={
+              <IconIonicons
+                name={"ios-log-out-outline"}
+                size={30}
+                color={"white"}
+              />
+            }
+            //<Text style={{ color: "white" }}>Deconnexion</Text>}
+          />
           <Scene
             key={"buddyfinder"}
             titleStyle={{ color: "white" }}
@@ -201,6 +219,15 @@ export default class App extends Component {
             direction={"vertical"}
             //navigationBarStyle={{ backgroundColor: "#ffffff" }}
             component={TchatScene}
+          />
+          <Scene
+            key={"theater"}
+            titleStyle={{ color: "white" }}
+            title={"Cinéma"}
+            hideNavBar={false}
+            direction={"vertical"}
+            //navigationBarStyle={{ backgroundColor: "#ffffff" }}
+            component={TheaterScene}
           />
           {/*<Scene
             key={"facebookprofilescene"}

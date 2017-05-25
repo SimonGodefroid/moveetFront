@@ -40,12 +40,18 @@ export default class MyCustomCalloutViewBuddies extends React.Component {
           </Text>
         </View>
         <View>
-          <Text style={{ paddingTop: 10 }}>
-            {this.props.account.favorites[0]},
+          <Text style={{ paddingTop: 10, fontSize: 12 }}>
+            {!this.props.account.favorites[0]
+              ? ""
+              : this.props.account.favorites[0]["originalTitle"]}
             {"\n"}
-            {this.props.account.favorites[1]},
+            {!this.props.account.favorites[1]
+              ? ""
+              : this.props.account.favorites[1]["originalTitle"]}
             {"\n"}
-            {this.props.account.favorites[2]},
+            {!this.props.account.favorites[2]
+              ? ""
+              : this.props.account.favorites[2]["originalTitle"]}
           </Text>
         </View>
 

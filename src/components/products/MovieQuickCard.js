@@ -27,7 +27,7 @@ export default class MovieQuickCard extends React.Component {
 
   renderGenre(genreList) {
     const genres = genreList.map((genre, index) => (
-      <View key={index}><Text>{genre}</Text></View>
+      <View key={index}><Text style={{ color: "white" }}>{genre}</Text></View>
     ));
     return <View>{genres}</View>;
   }
