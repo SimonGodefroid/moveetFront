@@ -176,11 +176,15 @@ export default class MovieShowtimesScene extends Component {
   }
 
   render() {
+    console.log("movie showtimes this props", this.props);
     if (Object.keys(this.state.movieShowtimesData).length === 0) {
       return <View style={{ marginTop: 200 }}><Text>Loading</Text></View>;
     }
     return (
       <ScrollView style={{ marginTop: 70 }}>
+        <Text style={{ textAlign: "center" }}>
+          Séances pour {this.props.movie.originalTitle}
+        </Text>
         <Accordion
           sections={this.state.movieShowtimesData}
           renderHeader={this._renderHeader}

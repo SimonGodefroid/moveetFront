@@ -185,15 +185,13 @@ class Api {
   }
 
   getTheaterShowtime(theater, location, callback) {
+    console.log("api get theater showtime theate", theater);
     fetch(
-      `${Config.host}/api/movies/showtimes?movie=&lat=${location.latitude}&long=${location.longitude}&theater=${theater}&count=20`
+      `${Config.host}/api/movies/showtimes?movie=&lat=${location.latitude}&long=${location.longitude}&theaters=${theater}&count=20`
     )
       .then(res => res.json())
       .then(movieShowtimes => {
-        console.log(
-          "movieShowtimes fetched",
-          movieShowtimes.showtimes.feed.theaterShowTimes
-        );
+        console.log("movieShowtimes fetched", movieShowtimes);
         callback(movieShowtimes);
       })
       .catch(error => {

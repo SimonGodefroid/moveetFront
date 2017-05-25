@@ -18,13 +18,14 @@ import Button from "../components/core/Button";
 import Fav from "../components/core/Fav";
 import { Actions } from "react-native-router-flux";
 import _ from "lodash";
+import Accordion from "react-native-collapsible/Accordion";
 
 let {
   height,
   width
 } = Dimensions.get("window");
 
-export default class MovieScene extends React.Component {
+export default class TheaterScene extends React.Component {
   constructor(props) {
     super(props);
 
@@ -47,141 +48,127 @@ export default class MovieScene extends React.Component {
         },
         showTimesList => {
           this.setState({
-            showtimesData: showTimesList.showtimes.feed.theaterShowtimes,
+            showtimesData: showTimesList.showtimes.feed.theaterShowtimes[0],
             showtimes: this.state.showtimes.cloneWithRows(
-              showTimesList.showtimes.feed.theaterShowtimes
+              showTimesList.showtimes.feed.theaterShowtimes[0]
             )
           });
         }
       );
     });
   }
+  _renderHeader(section) {
+    return (
+      <View style={styles.header}>
+        <Text style={styles.headerText}>
+          {section.onShow.movie.title}
+          -
+          {section.version.original === "true" &&
+            section.version.$ !== "Français"
+            ? "VO"
+            : "VF"}
+          {section.screenFormat.$ === "Numérique" ? "" : section.screenFormat.$}
+
+        </Text>
+        <Text style={{ textAlign: "center" }}>{section.screen.$}</Text>
+      </View>
+    );
+  }
+
+  _renderContent(section) {
+    const screenings = section.scr.map((movie, index) => {
+      return (
+        <View key={index}>
+          <Text key={index}>{movie.d}</Text>
+          {movie.t.map((time, index2) => {
+            return <Text key={index2}>{time.$}</Text>;
+          })}
+        </View>
+      );
+    });
+    return (
+      <View style={[styles.content, { marginHorizontal: 10 }]}>
+        <Text style={{ padding: 10 }}>
+          {section.onShow.movie.title}
+
+        </Text>
+        {screenings}
+      </View>
+    );
+  }
 
   render() {
-    console.log("theater scene this.props", this.props);
-    console.log("theater this state", this.state);
+    if (Object.keys(this.state.showtimesData).length === 0) {
+      return <View style={{ marginTop: 200 }}><Text>Loading</Text></View>;
+    }
     return (
-      <Image
-        style={{
-          marginTop: 70,
-          margin: 5,
-          height: height - 50,
-          width: width - 10,
-          flex: 1
-        }}
-        source={{
-          uri: !this.props.theater.picture
-            ? ""
-            : this.props.theater.picture.href
-        }}
-      >
+      <ScrollView style={{ marginTop: 70 }}>
+        <Image
+          style={{
+            margin: 5,
+            height: height - 50,
+            width: width - 10,
+            flex: 1
+          }}
+          source={{ uri: this.props.theater.picture.href }}
+        />
 
-        <ScrollView>
-          <View
-            style={{
-              marginTop: height / 8 - 50,
-              alignItems: "center",
-              width: width,
-              backgroundColor: "rgba(255, 255, 255,0.9)"
-            }}
-          >
-            <View>
-              <Text style={{ marginTop: 10, fontSize: 20 }}>
-                {this.props.theater.name.toUpperCase()}
-              </Text>
-            </View>
-            <View>
-              <Text style={{ marginVertical: 4 }}>
-                {this.props.theater.address}
-              </Text>
-            </View>
-
-            <View style={{ marginTop: 10, width: width - 20 }} />
-
-          </View>
-        </ScrollView>
-      </Image>
+        <Accordion
+          sections={this.state.showtimesData["movieShowtimes"]}
+          renderHeader={this._renderHeader}
+          renderContent={this._renderContent}
+        />
+      </ScrollView>
     );
-
-    // original movie scene:
-
-    // <ScrollView style={{ marginTop: 60 }}>
-    //   <View style={{ padding: 10 }}>
-    //     <View
-    //       style={{
-    //         position: "relative",
-    //         alignItems: "center"
-    //       }}
-    //     >
-    //       <Image
-    //         style={{ height: 175, width: width }}
-    //         source={{ uri: this.props.movie.posterPath }}
-    //       />
-    //       {/*<Image
-    //         style={{ height: 150, width: width - 20 }}
-    //         source={{
-    //           uri: `https://image.tmdb.org/t/p/w1000`
-    //         }}
-    //       />*/}
-
-    //       <View style={{ position: "absolute", top: 75 }}>
-    //         <Text
-    //           style={{
-    //             color: "black",
-    //             backgroundColor: "transparent",
-    //             textAlign: "center"
-    //           }}
-    //         >
-    //           {this.props.movie.originalTitle.toUpperCase()}
-    //         </Text>
-    //       </View>
-    //       <View><Text>{this.props.movie.overview}</Text></View>
-    //       <View><Text>{this.props.movie.release.releaseDate}</Text></View>
-    //       <View><Text>{this.props.movie.statusList}</Text></View>
-
-    //       <View>
-    //         <Text>
-    //           À l'affiche dans
-    //           {" "}
-    //           {this.props.movie.statistics.theaterCount}
-    //           {" "}
-    //           Salles
-    //         </Text>
-    //       </View>
-    //       <View>
-
-    //         <Text>
-    //           <Icon name={"ios-star"} color={Global.goldColor} />
-    //           Allociné:
-    //           {" "}
-    //           {_.round(this.props.movie.statistics.userRating * 2, 1)}
-    //           /10
-    //         </Text>
-    //       </View>
-    //       <View>
-    //         <Text
-    //           style={{ textAlign: "center", padding: 10, lineHeight: 18 }}
-    //           onPress={this.toggleView}
-    //           numberOfLines={this.state.expandText ? 100 : 4}
-    //         >
-    //           {this.props.movie.synopsis}
-    //         </Text>
-    //       </View>
-
-    //       <View><Text>{this.props.movie.rating} voters</Text></View>
-    //       <View style={{ position: "absolute", top: 10, right: 10 }}>
-    //         <Fav movieId={this.props.movie._id} />
-    //       </View>
-    //       <View style={{ marginTop: 20 }}>
-    //         <Text onPress={() => console.log("view pressed")}>
-    //           Voir les horaires dans les cinémas autour de moi
-    //         </Text>
-    //         <Text onPress={() => console.log("view pressed")}>
-    //           Trouver un buddy pour ce film
-    //         </Text>
-    //       </View>
-    //     </View>
-    //   </View>
-    // </ScrollView>
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  title: {
+    textAlign: "center",
+    fontSize: 22,
+    fontWeight: "300",
+    marginBottom: 10
+  },
+  header: {
+    backgroundColor: "#F5FCFF",
+    padding: 10
+  },
+  headerText: {
+    textAlign: "center",
+    fontSize: 14,
+    fontWeight: "500"
+  },
+  content: {
+    paddingBottom: 10,
+    backgroundColor: "#fff"
+  },
+  active: {
+    backgroundColor: "rgba(255,255,255,1)"
+  },
+  inactive: {
+    backgroundColor: "rgba(245,252,255,1)"
+  },
+  selectors: {
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  selector: {
+    backgroundColor: "#F5FCFF",
+    padding: 10
+  },
+  activeSelector: {
+    fontWeight: "bold"
+  },
+  selectTitle: {
+    fontSize: 14,
+    fontWeight: "500",
+    padding: 10
+  }
+});
