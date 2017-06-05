@@ -52,7 +52,7 @@ export default class EditProfileScene extends React.Component {
   // permet de trouver si la search value apparait dans les valeurs d'un objet. Ici le but est de chercher si le buddy de la rowData est contenu dans le tableau des buddies, buddies requests ou buddies pending du user connecté
   mapObjectValue(object) {
     let result = object
-      .map(function(x) {
+      .map(function (x) {
         return x._id.toString();
       })
       .indexOf(this.props.userData._id) === -1
@@ -69,36 +69,58 @@ export default class EditProfileScene extends React.Component {
     });
   }
 
-  pickSingle(cropit, circular = false) {
+  pickSingleBase64(cropit) {
     ImagePicker.openPicker({
       width: 300,
       height: 300,
       cropping: cropit,
-      cropperCircleOverlay: circular,
-      compressImageMaxWidth: 640,
-      compressImageMaxHeight: 480,
-      compressImageQuality: 0.5,
-      compressVideoPreset: "MediumQuality"
-    })
-      .then(image => {
-        console.log("received image", image);
-        console.log("before saveuserimage", image.path);
-        Api.saveUserImage(image.path);
-        this.setState({
-          image: {
-            uri: image.path,
-            width: image.width,
-            height: image.height,
-            mime: image.mime
-          },
-          images: null
-        });
-      })
-      .catch(e => {
-        console.log(e);
-        Alert.alert(e.message ? e.message : e);
+      includeBase64: true
+    }).then(image => {
+      console.log('received base64 image');
+      Api.saveUserImageBase64(
+        {
+          "data": "data:" + image.mime + ';base64,' + image.data,
+          "width": image.width,
+          "height": image.height
+        }
+      );
+      this.setState({
+        image: { uri: `data:${image.mime};base64,` + image.data, width: image.width, height: image.height },
+        images: null
       });
+    }).catch(e => alert(e));
   }
+
+  // pickSingle(cropit, circular = false) {
+  //   ImagePicker.openPicker({
+  //     width: 300,
+  //     height: 300,
+  //     cropping: cropit,
+  //     cropperCircleOverlay: circular,
+  //     compressImageMaxWidth: 640,
+  //     compressImageMaxHeight: 480,
+  //     compressImageQuality: 0.5,
+  //     compressVideoPreset: "MediumQuality"
+  //   })
+  //     .then(image => {
+  //       console.log("received image", image);
+  //       console.log("before saveuserimage", image.path);
+  //       Api.saveUserImage(image.path);
+  //       this.setState({
+  //         image: {
+  //           uri: image.path,
+  //           width: image.width,
+  //           height: image.height,
+  //           mime: image.mime
+  //         },
+  //         images: null
+  //       });
+  //     })
+  //     .catch(e => {
+  //       console.log(e);
+  //       Alert.alert(e.message ? e.message : e);
+  //     });
+  // }
 
   scaledHeight(oldW, oldH, newW) {
     return oldH / oldW * newW;
@@ -143,7 +165,8 @@ export default class EditProfileScene extends React.Component {
           <View style={{ alignItems: "center", marginTop: 30 }}>
             <TouchableOpacity
               style={{ alignItems: "center" }}
-              onPress={() => this.pickSingle(true)}
+              //onPress={() => this.pickSingle(true)}
+              onPress={() => this.pickSingleBase64(false)}
             >
               <Avatar
                 height={150}

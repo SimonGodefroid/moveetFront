@@ -58,6 +58,9 @@ export default class TheaterScene extends React.Component {
     });
   }
   _renderHeader(section) {
+    console.log("coucou theaterscene render header");
+    console.log("section.version", section.version);
+    console.log("section.screen", section.screen);
     return (
       <View style={styles.header}>
         <Text style={styles.headerText}>
@@ -70,12 +73,15 @@ export default class TheaterScene extends React.Component {
           {section.screenFormat.$ === "Numérique" ? "" : section.screenFormat.$}
 
         </Text>
-        <Text style={{ textAlign: "center" }}>{section.screen.$}</Text>
+        <Text style={{ textAlign: "center" }}>
+          {section.screen ? section.screen.$ : ""}
+        </Text>
       </View>
     );
   }
 
   _renderContent(section) {
+    console.log("coucou theaterscene render content");
     const screenings = section.scr.map((movie, index) => {
       return (
         <View key={index}>
@@ -98,27 +104,31 @@ export default class TheaterScene extends React.Component {
   }
 
   render() {
+    console.log("coucou theaterScene");
+
     if (Object.keys(this.state.showtimesData).length === 0) {
       return <View style={{ marginTop: 200 }}><Text>Loading</Text></View>;
     }
     return (
-      <ScrollView style={{ marginTop: 70 }}>
-        <Image
-          style={{
-            margin: 5,
-            height: height - 50,
-            width: width - 10,
-            flex: 1
-          }}
-          source={{ uri: this.props.theater.picture.href }}
-        />
+      <Image
+        style={{
+          margin: 5,
+          height: height - 50,
+          width: width - 10,
+          flex: 1
+        }}
+        source={{ uri: this.props.theater.picture.href }}
+      >
+        <ScrollView style={{ marginTop: 70 }}>
 
-        <Accordion
-          sections={this.state.showtimesData["movieShowtimes"]}
-          renderHeader={this._renderHeader}
-          renderContent={this._renderContent}
-        />
-      </ScrollView>
+          <Accordion
+            sections={this.state.showtimesData["movieShowtimes"]}
+            renderHeader={this._renderHeader}
+            renderContent={this._renderContent}
+          />
+
+        </ScrollView>
+      </Image>
     );
   }
 }
@@ -146,10 +156,10 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingBottom: 10,
-    backgroundColor: "#fff"
+    backgroundColor: "rgba(255,255,255,0.6)"
   },
   active: {
-    backgroundColor: "rgba(255,255,255,1)"
+    backgroundColor: "rgba(255,255,255,0.3)"
   },
   inactive: {
     backgroundColor: "rgba(245,252,255,1)"

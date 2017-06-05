@@ -82,16 +82,30 @@ class Api {
     );
   }
 
-  saveUserImage(imagePath = {}, callback) {
-    console.log("saveUserImage imagePath", imagePath);
-    fetch(`${Config.host}/api/user/${this.getUser()._id}/saveUserImage/`, {
+  // saveUserImage(imagePath = {}, callback) {
+  //   console.log("saveUserImage imagePath", imagePath);
+  //   fetch(`${Config.host}/api/user/${this.getUser()._id}/saveUserImage/`, {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       imagePath
+  //     })
+  //   });
+  // }
+
+  saveUserImageBase64(imageBase64 = {}, callback) {
+    console.log("saveUserImage imagePath", imageBase64);
+    fetch(`${Config.host}/api/user/${this.getUser()._id}/saveUserImageBase64/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        imagePath
+        imageBase64
       })
+
     });
   }
 
@@ -304,9 +318,9 @@ class Api {
     var dLon = this.deg2rad(lon2 - lon1);
     var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
       Math.cos(this.deg2rad(lat1)) *
-        Math.cos(this.deg2rad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+      Math.cos(this.deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
     return Math.floor(d);
