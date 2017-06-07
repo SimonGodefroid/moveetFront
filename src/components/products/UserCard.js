@@ -27,7 +27,7 @@ export default class UserCard extends React.Component {
 
   render() {
     return (
-      <View style={[styles.viewCard, { position: "relative" }]}>
+      <View style={[styles.viewCard, { position: "relative", borderWidth: 0.5 }]}>
         <View
           style={{
             position: "absolute",
@@ -41,10 +41,14 @@ export default class UserCard extends React.Component {
             width={70}
             borderRadius={35}
             picture={this.props.picture}
+            borderColor={"black"}
+            borderWidth={1}
           />
         </View>
         <View
-          style={[styles.overlay, { backgroundColor: "red", opacity: 0.5 }]}
+          style={[styles.overlay, {
+            backgroundColor: 'transparent'
+          }]}
         >
           <View style={styles.textView}>
             <Text style={styles.textHeader}>{this.props.username}</Text>
@@ -82,20 +86,19 @@ const styles = StyleSheet.create({
   },
   textView: {
     flex: 1
-    //justifyContent: "center"
   },
   textHeader: {
-    color: Global.secondColor,
-    fontFamily: Global.secondFontBold,
+    color: 'black',
+    fontFamily: Global.primaryFontBold,
     fontSize: 22,
     position: "absolute",
     top: 5,
     left: 110
-    //textAlign: "center"
+
   },
   textContent: {
-    color: Global.secondColor,
-    fontFamily: Global.secondFontBold,
+    color: Global.moveetRed,
+    fontFamily: Global.primaryFontBold,
     fontSize: 16,
     position: "absolute",
     top: 35,
@@ -110,7 +113,6 @@ const styles = StyleSheet.create({
     left: 110
   },
   overlay: {
-    //backgroundColor: "rgba(239,128,126, 0.35)",
     height: heightimage,
     width: widthimage
   }

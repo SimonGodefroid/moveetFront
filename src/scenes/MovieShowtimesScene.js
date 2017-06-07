@@ -97,7 +97,7 @@ export default class MovieShowtimesScene extends Component {
           <Text
             style={{
               textAlign: "center",
-              backgroundColor: "black",
+              backgroundColor: Global.moveetRed,
               color: "white",
               marginBottom: 5
             }}
@@ -182,16 +182,18 @@ export default class MovieShowtimesScene extends Component {
       return <Loading />;
     }
     return (
-      <ScrollView style={{ marginTop: 70 }}>
+      <View style={{ marginTop: 70 }}>
         <Text style={{ textAlign: "center" }}>
           Séances pour {this.props.movie.originalTitle}
         </Text>
-        <Accordion
-          sections={this.state.movieShowtimesData}
-          renderHeader={this._renderHeader}
-          renderContent={this._renderContent}
-        />
-      </ScrollView>
+        <ScrollView >
+          <Accordion
+            sections={this.state.movieShowtimesData}
+            renderHeader={this._renderHeader}
+            renderContent={this._renderContent}
+          />
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -204,16 +206,19 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
+
     fontSize: 22,
     fontWeight: "300",
     marginBottom: 10
   },
   header: {
-    backgroundColor: "#F5FCFF",
+    backgroundColor: "black",
+
     padding: 10
   },
   headerText: {
     textAlign: "center",
+    color: 'white',
     fontSize: 16,
     fontWeight: "500"
   },

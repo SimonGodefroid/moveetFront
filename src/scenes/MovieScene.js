@@ -57,7 +57,8 @@ export default class MovieScene extends React.Component {
     return (
       <Text
         style={{
-          color: "green",
+          color: "white",
+          backgroundColor: Global.moveetRed,
           padding: 10,
           textAlign: "center"
         }}
@@ -127,7 +128,7 @@ export default class MovieScene extends React.Component {
             }}
           >
             <View>
-              <Text style={{ marginTop: 10, fontSize: 20 }}>
+              <Text style={{ marginTop: 10, fontSize: 20, textAlign: 'center' }}>
                 {this.props.movie.originalTitle.toUpperCase()}
               </Text>
             </View>
@@ -144,7 +145,17 @@ export default class MovieScene extends React.Component {
 
             </View>
             <View style={{ marginTop: 10, width: width - 20 }}>
-
+              <Text
+                style={{
+                  lineHeight: 18
+                }}
+                onPress={this.toggleView}
+                numberOfLines={this.state.expandText ? 100 : 3}
+              >
+                {console.log('this.props.movie', this.props.movie)}
+                Réalisé par: {this.props.movie.castingShort.directors}{"\n"}
+                Avec:
+              </Text>
               <Text
                 style={{
                   lineHeight: 18

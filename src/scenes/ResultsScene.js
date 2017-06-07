@@ -124,10 +124,7 @@ export default class ResultsScene extends React.Component {
       return (
         <Text
           style={{
-            color: "white",
-            backgroundColor: "green",
-            padding: 10,
-            textAlign: "center"
+            color: Global.moveetRed,
           }}
         >
           Bientôt à l'affiche
@@ -137,20 +134,25 @@ export default class ResultsScene extends React.Component {
     return (
       <Text
         style={{
-          color: "green",
-          padding: 10,
-          textAlign: "center"
+          color: "black",
         }}
       >
-        À l'affiche dans {movie.statistics.theaterCount} salles
+        Dans {movie.statistics.theaterCount} salles
       </Text>
     );
   }
 
+  // renderGenre(rowData) {
+  //   const genres = rowData.genreList.map((genre, index) => (
+  //     <View key={index}><Text style={{ color: "white" }}>{genre}</Text></View>
+  //   ));
+  //   return <View>{genres}</View>;
+  // }
+
+
   renderMovieCard(rowData) {
     return (
       <TouchableOpacity onPress={() => Actions.movie({ movie: rowData })}>
-
         <View style={{ position: "relative" }}>
           <MovieCard
             poster={rowData.posterPath}
@@ -165,36 +167,46 @@ export default class ResultsScene extends React.Component {
         <View
           style={{
             position: "absolute",
-            bottom: 10,
-            left: 150,
-            flexDirection: "row"
+            bottom: 6,
+            left: 140,
+            flexDirection: "row",
+            zIndex: 20,
+            //            backgroundColor: 'black',
+            borderRadius: 14,
+            paddingHorizontal: 6,
+            paddingVertical: 4,
+            borderStyle: 'solid',
+            borderColor: 'black',
+            borderWidth: 1,
           }}
         >
-          <Text style={{ textAlign: "left" }}>
-            {this.renderStatusList(rowData)}
-          </Text>
+          {this.renderStatusList(rowData)}
+        </View>
+        <View>
           <Text
             style={{
-              marginLeft: 20,
-              zIndex: 1000,
-              backgroundColor: "transparent"
+              position: 'absolute',
+              right: 12,
+              bottom: 8,
+              zIndex: 100000,
+              backgroundColor: "transparent",
+              fontWeight: 'bold'
             }}
           >
             {!isNaN(rowData.statistics.userRating * 2)
-              ? rowData.statistics.userRating * 2
+              ? (rowData.statistics.userRating * 2).toFixed(1)
               : ""}
           </Text>
-          <IconMaterialCommunityIcons
-            name={"popcorn"}
-            size={30}
-            color={
-              rowData.statistics.userRating * 2 > 5 ? Global.heartColor : "red"
-            }
-            style={{ position: "absolute", right: -4, bottom: -4 }}
-          />
-
         </View>
-      </TouchableOpacity>
+        <IconMaterialCommunityIcons
+          name={"popcorn"}
+          size={40}
+          color={
+            rowData.statistics.userRating * 2 < 7 ? "orange" : Global.heartColor
+          }
+          style={{ position: "absolute", zIndex: -10, right: 4, bottom: 20 }}
+        />
+      </TouchableOpacity >
     );
   }
 

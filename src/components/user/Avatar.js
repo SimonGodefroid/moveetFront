@@ -23,7 +23,7 @@ export default class Avatar extends React.Component {
         style={{
           borderStyle: "solid",
           borderWidth: 3,
-          borderColor: "white",
+          borderColor: !this.props.borderColor ? "black" : this.props.borderColor,
           height: this.props.height + 6,
           width: this.props.width + 6,
           borderRadius: this.props.borderRadius + 6

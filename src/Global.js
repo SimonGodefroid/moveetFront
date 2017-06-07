@@ -8,6 +8,7 @@ const fifthColor = "#26766B";
 const sixthColor = "#2B4A46";
 const heartColor = "#EF807E";
 const moveetColor = "#000";
+const moveetRed = "#e06666";
 
 //#e06666 => red in use in titles !!!
 
@@ -41,6 +42,7 @@ export default {
   fifthColor: fifthColor,
   sixthColor: sixthColor,
   moveetColor: moveetColor,
+  moveetRed: moveetRed,
   heartColor: heartColor,
 
   mainFontBold: mainFontBold,
