@@ -13,6 +13,7 @@ import {
 import Api from "../Api.js";
 import Icon from "../components/core/Icon";
 import { Actions } from "react-native-router-flux";
+import Loading from "../components/core/Loading";
 import Global from "../Global";
 import Config from "../Config";
 import UserCard from "../components/products/UserCard";
@@ -112,6 +113,9 @@ export default class BuddiesTabsScene extends React.Component {
   render() {
     console.log("buddyscene user loc", !Api.getUser().account.location);
     console.log("this.state.matchesData", this.state.matchesData);
+    if (this.state.allUsersData.length <= 0) {
+      return (<Loading />)
+    }
     return (
       <ScrollView style={{ marginTop: Platform.OS === "ios" ? 70 : 0 }}>
         <View style={[styles.page, { backgroundColor: "white" }]}>

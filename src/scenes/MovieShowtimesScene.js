@@ -15,6 +15,7 @@ import Api from "../Api.js";
 import Config from "../Config.js";
 import Global from "../Global.js";
 import MovieCard from "../components/products/MovieCard";
+import Loading from "../components/core/Loading";
 import ShowtimeCard from "../components/products/ShowtimeCard";
 import Avatar from "../components/user/Avatar";
 import Icon from "../components/core/Icon";
@@ -178,7 +179,7 @@ export default class MovieShowtimesScene extends Component {
   render() {
     console.log("movie showtimes this props", this.props);
     if (Object.keys(this.state.movieShowtimesData).length === 0) {
-      return <View style={{ marginTop: 200 }}><Text>Loading</Text></View>;
+      return <Loading />;
     }
     return (
       <ScrollView style={{ marginTop: 70 }}>

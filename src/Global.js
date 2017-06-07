@@ -9,6 +9,9 @@ const sixthColor = "#2B4A46";
 const heartColor = "#EF807E";
 const moveetColor = "#000";
 
+//#e06666 => red in use in titles !!!
+
+
 /* fonts */
 const mainFontBold = "Nunito-Bold";
 const mainFont = "Nunito-Regular";

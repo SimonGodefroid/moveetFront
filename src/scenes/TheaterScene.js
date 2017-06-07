@@ -15,6 +15,7 @@ import MovieCard from "../components/products/MovieCard";
 import Avatar from "../components/user/Avatar";
 import Icon from "../components/core/Icon";
 import Button from "../components/core/Button";
+import Loading from "../components/core/Loading";
 import Fav from "../components/core/Fav";
 import { Actions } from "react-native-router-flux";
 import _ from "lodash";
@@ -107,7 +108,7 @@ export default class TheaterScene extends React.Component {
     console.log("coucou theaterScene");
 
     if (Object.keys(this.state.showtimesData).length === 0) {
-      return <View style={{ marginTop: 200 }}><Text>Loading</Text></View>;
+      return <Loading />;
     }
     return (
       <Image

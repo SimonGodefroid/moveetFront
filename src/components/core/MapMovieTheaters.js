@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import Api from "../../Api";
 import Map from "react-native-maps";
 import MyCustomCalloutViewTheater from "./MyCustomCalloutViewTheater";
+import Loading from "../core/Loading";
 
 export default class MapMovieTheaters extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ export default class MapMovieTheaters extends React.Component {
   }
 
   renderTheaterMarkers(theaters) {
+
     console.log("this.state.allUsers", this.state.allTheaters);
     //console.log("coucou render theater marker");
     if (this.state.allTheaters) {
@@ -59,12 +61,11 @@ export default class MapMovieTheaters extends React.Component {
   }
 
   renderTheaterMap() {
-    console.log("this.props.latitude", this.props.latitude);
-    console.log("this.props.longitude", this.props.longitude);
+    //console.log("this.props.latitude", this.props.latitude);
+    //console.log("this.props.longitude", this.props.longitude);
 
     return (
       <View style={{ marginTop: 0 }}>
-
         <Map
           style={styles.mapview}
           showsUserLocation={true} // remember to set a custom location
@@ -90,6 +91,9 @@ export default class MapMovieTheaters extends React.Component {
   }
 
   render() {
+    if (this.state.allTheaters.length <= 0) {
+      return (<Loading />)
+    }
     return (
       <View>
         <View style={{ alignItems: "center" }}>

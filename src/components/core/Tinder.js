@@ -1,6 +1,3 @@
-// Tinder.js
-"use strict";
-
 import React, { Component } from "react";
 import {
   StyleSheet,
@@ -14,6 +11,7 @@ import Api from "../../Api";
 import Config from "../../Config";
 import SwipeCards from "react-native-swipe-cards";
 import { Actions } from "react-native-router-flux";
+import Loading from "./Loading";
 
 let {
   height,
@@ -66,8 +64,8 @@ class NoMoreCards extends Component {
 
   render() {
     return (
-      <View>
-        <Text style={styles.noMoreCardsText}>Loading Movies</Text>
+      <View style={{ flex: 1 }}>
+        <Loading />
       </View>
     );
   }
@@ -95,8 +93,8 @@ export default class Tinder extends React.Component {
   }
 
   handleYup(card) {
-    console.log(`Yup for ${card.originalTitle}`);
-    console.log(`Yup for ${card._id}`);
+    // console.log(`Yup for ${card.originalTitle}`);
+    // console.log(`Yup for ${card._id}`);
     fetch(
       `${Config.host}/api/user/${Api.getUser()._id}/moviesSwiperLike/${card._id}`,
       {
@@ -111,8 +109,8 @@ export default class Tinder extends React.Component {
     );
   }
   handleNope(card) {
-    console.log(`Nope for ${card.originalTitle}`);
-    console.log(`Nope for ${card._id}`);
+    // console.log(`Nope for ${card.originalTitle}`);
+    // console.log(`Nope for ${card._id}`);
     fetch(
       `${Config.host}/api/user/${Api.getUser()._id}/moviesSwiperDislike/${card._id}`,
       {
@@ -120,15 +118,15 @@ export default class Tinder extends React.Component {
       }
     );
   }
-  handleMaybe(card) {
-    console.log(`Maybe for ${card.originalTitle}`);
-    console.log(`Maybe for ${card._id}`);
-  }
+  // handleMaybe(card) {
+  //   console.log(`Maybe for ${card.originalTitle}`);
+  //   console.log(`Maybe for ${card._id}`);
+  // }
 
   render() {
     // If you want a stack of cards instead of one-per-one view, activate stack mode
     // stack={true}
-    console.log("this.state.cards", this.state.cards);
+    // console.log("this.state.cards", this.state.cards);
     return (
       <SwipeCards
         cards={this.state.cards}
@@ -136,7 +134,7 @@ export default class Tinder extends React.Component {
         renderNoMoreCards={() => <NoMoreCards />}
         handleYup={this.handleYup}
         handleNope={this.handleNope}
-        handleMaybe={this.handleMaybe}
+        //handleMaybe={this.handleMaybe}
         yupText={"Oui !"}
         nopeText={"Non !"}
       />
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
     height: 300,
     marginTop: 40
   },
-  noMoreCardsText: {
-    fontSize: 22
-  }
+  // noMoreCardsText: {
+  //   fontSize: 22
+  // }
 });

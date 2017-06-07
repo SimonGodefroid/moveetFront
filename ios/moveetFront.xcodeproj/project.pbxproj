@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -20,16 +19,11 @@
 		028DF7521EC89DDD00536E24 /* QBImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 028DF74D1EC89D4300536E24 /* QBImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		028DF7531EC89DDD00536E24 /* RSKImageCropper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 028DF74E1EC89D4300536E24 /* RSKImageCropper.framework */; };
 		028DF7541EC89DDD00536E24 /* RSKImageCropper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 028DF74E1EC89D4300536E24 /* RSKImageCropper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		02BD59C51EC5F60D003BA1A2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BD59C11EC5F60D003BA1A2 /* Bolts.framework */; };
-		02BD59C61EC5F60D003BA1A2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BD59C21EC5F60D003BA1A2 /* FBSDKCoreKit.framework */; };
-		02BD59C71EC5F60D003BA1A2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BD59C31EC5F60D003BA1A2 /* FBSDKLoginKit.framework */; };
-		02BD59C81EC5F60D003BA1A2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02BD59C41EC5F60D003BA1A2 /* FBSDKShareKit.framework */; };
 		0E50D61A43C34744AEDCF990 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 00B88811210A4F28995559F7 /* Montserrat-Bold.ttf */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
@@ -120,13 +114,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = moveetFront;
-		};
-		022B906F1EE8227F00EAD7C0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AE8B86A31DA34C48BF21A96B /* SplashScreen.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3D7682761D8E76B80014119E;
-			remoteInfo = SplashScreen;
 		};
 		02436BDA1E964C9E00585955 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -348,16 +335,11 @@
 		022B90241EE8214800EAD7C0 /* moveetFront.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = moveetFront.entitlements; path = moveetFront/moveetFront.entitlements; sourceTree = "<group>"; };
 		028DF74D1EC89D4300536E24 /* QBImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QBImagePicker.framework; sourceTree = "<group>"; };
 		028DF74E1EC89D4300536E24 /* RSKImageCropper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RSKImageCropper.framework; sourceTree = "<group>"; };
-		02BD59C11EC5F60D003BA1A2 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../../../../../FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
-		02BD59C21EC5F60D003BA1A2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		02BD59C31EC5F60D003BA1A2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		02BD59C41EC5F60D003BA1A2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* moveetFront.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = moveetFront.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = moveetFront/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = moveetFront/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = moveetFront/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = moveetFront/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = moveetFront/main.m; sourceTree = "<group>"; };
@@ -392,7 +374,6 @@
 		9B737598ED714629B2CE7E1E /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Regular.ttf"; path = "../assets/fonts/RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
 		9EBD825161024B04BF94EEB3 /* ReactNativeConfig.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = ReactNativeConfig.xcodeproj; path = "../node_modules/react-native-config/ios/ReactNativeConfig.xcodeproj"; sourceTree = "<group>"; };
 		A8B66105299C4150A99DE816 /* Nunito-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-SemiBold.ttf"; path = "../assets/fonts/Nunito-SemiBold.ttf"; sourceTree = "<group>"; };
-		AE8B86A31DA34C48BF21A96B /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = SplashScreen.xcodeproj; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; };
 		B580EA4015B24FB785B20527 /* Abel-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Abel-Regular.ttf"; path = "../assets/fonts/Abel-Regular.ttf"; sourceTree = "<group>"; };
 		C36C1D74AD024DA8B8DBB819 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Nunito-Regular.ttf"; path = "../assets/fonts/Nunito-Regular.ttf"; sourceTree = "<group>"; };
 		C9D81946309D44B3B0C325E6 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -426,16 +407,12 @@
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				028DF7501EC89D4300536E24 /* RSKImageCropper.framework in Frameworks */,
 				00C302E91ABCBA2D00DB3ED1 /* libRCTNetwork.a in Frameworks */,
-				02BD59C61EC5F60D003BA1A2 /* FBSDKCoreKit.framework in Frameworks */,
 				139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */,
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				028DF7531EC89DDD00536E24 /* RSKImageCropper.framework in Frameworks */,
-				02BD59C81EC5F60D003BA1A2 /* FBSDKShareKit.framework in Frameworks */,
 				F47A47704D744E018FED346A /* libReactNativeConfig.a in Frameworks */,
-				02BD59C71EC5F60D003BA1A2 /* FBSDKLoginKit.framework in Frameworks */,
-				02BD59C51EC5F60D003BA1A2 /* Bolts.framework in Frameworks */,
 				291EAF2B573146558FCCBEE1 /* libAirMaps.a in Frameworks */,
 				D47C895FE7094B90AC25A04C /* libRNVectorIcons.a in Frameworks */,
 				028DF7511EC89DDD00536E24 /* QBImagePicker.framework in Frameworks */,
@@ -531,14 +508,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		022B904D1EE8227F00EAD7C0 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				022B90701EE8227F00EAD7C0 /* libSplashScreen.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		02436BD31E964C9D00585955 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,17 +557,6 @@
 			path = ImageCropPickerSDK;
 			sourceTree = "<group>";
 		};
-		02BD59C91EC5F618003BA1A2 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				02BD59C11EC5F60D003BA1A2 /* Bolts.framework */,
-				02BD59C21EC5F60D003BA1A2 /* FBSDKCoreKit.framework */,
-				02BD59C31EC5F60D003BA1A2 /* FBSDKLoginKit.framework */,
-				02BD59C41EC5F60D003BA1A2 /* FBSDKShareKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		02CA884B1E979D2800CF5E0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -634,7 +592,6 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
-				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
 			name = moveetFront;
@@ -693,7 +650,6 @@
 				4ADFF8F1E12341EE91023C93 /* RCTYouTube.xcodeproj */,
 				5204C5E20462471896F17BB6 /* RNImagePicker.xcodeproj */,
 				699EB47D677D485EB9949451 /* imageCropPicker.xcodeproj */,
-				AE8B86A31DA34C48BF21A96B /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -711,7 +667,6 @@
 			isa = PBXGroup;
 			children = (
 				028DF74C1EC89D4300536E24 /* ImageCropPickerSDK */,
-				02BD59C91EC5F618003BA1A2 /* Frameworks */,
 				13B07FAE1A68108700A75B9A /* moveetFront */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* moveetFrontTests */,
@@ -954,10 +909,6 @@
 					ProductGroup = 02436BD51E964C9D00585955 /* Products */;
 					ProjectRef = F933D4FFE5374B2FA7F674A5 /* RNVectorIcons.xcodeproj */;
 				},
-				{
-					ProductGroup = 022B904D1EE8227F00EAD7C0 /* Products */;
-					ProjectRef = AE8B86A31DA34C48BF21A96B /* SplashScreen.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1003,13 +954,6 @@
 			fileType = archive.ar;
 			path = libRCTVibration.a;
 			remoteRef = 00C302E31ABCB9EE00DB3ED1 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		022B90701EE8227F00EAD7C0 /* libSplashScreen.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libSplashScreen.a;
-			remoteRef = 022B906F1EE8227F00EAD7C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		02436BDB1E964C9E00585955 /* libAirMaps.a */ = {
@@ -1209,7 +1153,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7E79B57E9DC346AFA66C5469 /* Entypo.ttf in Resources */,
 				867063E6A0B54D28B4C7D783 /* EvilIcons.ttf in Resources */,
 				69EA963A964242F78D5CC11F /* FontAwesome.ttf in Resources */,
@@ -1334,18 +1277,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				13B07FB21A68108700A75B9A /* Base */,
-			);
-			name = LaunchScreen.xib;
-			path = moveetFront;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1416,6 +1347,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = moveetFront/moveetFront.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
@@ -1451,6 +1383,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = moveetFront/moveetFront.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4AMBHSQ863;

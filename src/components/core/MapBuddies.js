@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import Api from "../../Api";
 import Map from "react-native-maps";
 import MyCustomCalloutViewBuddies from "./MyCustomCalloutViewBuddies";
+import Loading from "../core/Loading";
 
 export default class MapBuddies extends React.Component {
   constructor(props) {
@@ -44,14 +45,25 @@ export default class MapBuddies extends React.Component {
     return usersMarkers;
   }
   render() {
+    if (this.state.allUsers.length <= 0) {
+      return (<Loading />)
+    }
     return (
       <View style={{ marginTop: 0 }}>
         <Map
           style={styles.mapview}
           showsUserLocation={true} // remember to set a custom location
           initialRegion={{
-            latitude: this.state.latitude,
-            longitude: this.state.longitude,
+            //latitude: this.state.latitude,
+            //longitude: this.state.longitude,
+            latitude: this.props.latitude,
+            longitude: this.props.longitude,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01
+          }}
+          region={{
+            latitude: this.props.latitude,
+            longitude: this.props.longitude,
             latitudeDelta: 0.01,
             longitudeDelta: 0.01
           }}

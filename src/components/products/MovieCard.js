@@ -9,7 +9,7 @@ import {
   View
 } from "react-native";
 
-let textLimit = 150;
+let textLimit = 123;
 let titleLimit = 36;
 
 let {

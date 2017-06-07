@@ -15,6 +15,7 @@ import MovieCard from "../components/products/MovieCard";
 import MovieQuickCard from "../components/products/MovieQuickCard";
 import Avatar from "../components/user/Avatar";
 import Icon from "../components/core/Icon";
+import Loading from "../components/core/Loading";
 import Swiper from "react-native-swiper";
 import { Actions } from "react-native-router-flux";
 import Global from "../Global";
@@ -42,7 +43,7 @@ export default class UserProfileScene extends React.Component {
   // permet de trouver si la search value apparait dans les valeurs d'un objet. Ici le but est de chercher si le buddy de la rowData est contenu dans le tableau des buddies, buddies requests ou buddies pending du user connecté
   mapObjectValue(object) {
     let result = object
-      .map(function(x) {
+      .map(function (x) {
         return x._id.toString();
       })
       .indexOf(this.state.userProfileInfo._id) === -1
@@ -142,7 +143,7 @@ export default class UserProfileScene extends React.Component {
     );
     console.log("Myprofile API.getUser()", Api.getUser());
     if (Object.keys(this.state.userProfileInfo).length <= 0) {
-      return <View style={{ marginTop: 60 }}><Text>Loading...</Text></View>;
+      return <Loading />;
     } else {
       return (
         <ScrollView

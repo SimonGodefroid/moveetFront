@@ -15,6 +15,7 @@ import MovieCard from "../components/products/MovieCard";
 import IconMaterialCommunityIcons
   from "react-native-vector-icons/MaterialCommunityIcons";
 import Avatar from "../components/user/Avatar";
+import Loading from "../components/core/Loading";
 import { Actions } from "react-native-router-flux";
 import { TabViewAnimated, TabBar } from "react-native-tab-view";
 
@@ -57,13 +58,13 @@ export default class ResultsScene extends React.Component {
 
   componentDidMount() {
     Api.getSortedMovies(this.props.genre, moviesList => {
-      console.log("Results#getMovies: ", moviesList);
+      // console.log("Results#getMovies: ", moviesList);
       this.setState({
         comingSoonMoviesData: moviesList.comingSoonMovies,
         comingSoonMovies: this.state.comingSoonMovies.cloneWithRows(
           moviesList.comingSoonMovies
         ),
-        nowShowingMoviesData: moviesList.nowShowingMoviesData,
+        nowShowingMoviesData: moviesList.nowShowingMovies,
         nowShowingMovies: this.state.nowShowingMovies.cloneWithRows(
           moviesList.nowShowingMovies
         )
@@ -86,11 +87,14 @@ export default class ResultsScene extends React.Component {
   };
 
   _renderScene = ({ route }) => {
+
     switch (route.key) {
       case "1":
+        if (this.state.nowShowingMoviesData.length <= 0) {
+          return (<Loading />)
+        }
         return (
           <View style={styles.page}>
-
             <ListView
               dataSource={this.state.nowShowingMovies}
               renderRow={rowData => this.renderMovieCard(rowData)}
@@ -99,6 +103,9 @@ export default class ResultsScene extends React.Component {
           </View>
         );
       case "2":
+        if (this.state.comingSoonMoviesData.length <= 0) {
+          return (<Loading />)
+        }
         return (
           <View style={styles.page}>
             <ListView

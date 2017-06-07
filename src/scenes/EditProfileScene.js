@@ -26,6 +26,7 @@ import Config from "../Config";
 import Fav from "../components/core/Fav";
 import _ from "lodash";
 import ImagePicker from "react-native-image-crop-picker";
+import Loading from "../components/core/Loading";
 
 let {
   height,
@@ -152,7 +153,7 @@ export default class EditProfileScene extends React.Component {
 
   render() {
     if (Object.keys(this.state.userProfileInfo).length <= 0) {
-      return <View style={{ marginTop: 60 }}><Text>Loading...</Text></View>;
+      return <Loading />;
     } else {
       return (
         <KeyboardAwareScrollView

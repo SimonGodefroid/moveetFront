@@ -11,7 +11,7 @@ export default class Loading extends React.Component {
         style={styles.activity_container}
       >
         <Image
-          source={Images.albertLoad}
+          source={Images.moveetLoad}
           style={{
             height: 115,
             width: 115
