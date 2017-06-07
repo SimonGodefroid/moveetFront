@@ -24,6 +24,7 @@
     "react-native-maps": "^0.13.0",
     "react-native-router-flux": "^3.38.0",
     "react-native-simple-store": "^1.1.0",
+    "react-native-splash-screen": "^2.1.0",
     "react-native-star-rating": "^1.0.7",
     "react-native-swipe-cards": "^0.1.0",
     "react-native-swiper": "^1.5.4",
