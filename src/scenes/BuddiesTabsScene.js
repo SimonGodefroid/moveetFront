@@ -117,16 +117,18 @@ export default class BuddiesTabsScene extends React.Component {
       return (<Loading />)
     }
     return (
-      <ScrollView style={{ marginTop: Platform.OS === "ios" ? 70 : 0 }}>
-        <View style={[styles.page, { backgroundColor: "white" }]}>
-          <Text style={{ textAlign: "center", padding: 4 }}>Matches</Text>
+      //<ScrollView style={{ marginTop: Platform.OS === "ios" ? 64 : 0 }}>
+      <View style={{ marginTop: Platform.OS === "ios" ? 64 : 0, marginBottom: Platform.OS === "ios" ? 150 : 0 }}>
+        <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, borderStyle: 'solid' }}>
+          <Text style={{ textAlign: "center", padding: 4, backgroundColor: Global.moveetRed, color: 'white' }}>Matches</Text>
           {this.renderListView(this.state.matches, this.state.matchesData)}
         </View>
-        <View>
-          <Text style={{ textAlign: "center", padding: 4 }}>All Users</Text>
+        <View style={{}}>
+          <Text style={{ textAlign: "center", padding: 4, backgroundColor: Global.moveetRed, color: 'white' }}>All Users</Text>
           {this.renderListView(this.state.allUsers, this.state.allUsersData)}
         </View>
-      </ScrollView>
+      </View>
+      //</ScrollView>
     );
   }
 }

@@ -42,7 +42,7 @@ export default class UserCard extends React.Component {
             borderRadius={35}
             picture={this.props.picture}
             borderColor={"black"}
-            borderWidth={1}
+            borderWidth={0.5}
           />
         </View>
         <View

@@ -8,5 +8,5 @@ export default {
   searchRomance: require("../../../assets/img/search-romance.jpg"),
   searchSciFi: require("../../../assets/img/search-scifi.jpg"),
   searchThriller: require("../../../assets/img/search-thriller.jpg"),
-  moveetLoad: require("../../../assets/img/ring-alt.gif")
+  moveetLoad: require("../../../assets/img/ring.gif")
 };

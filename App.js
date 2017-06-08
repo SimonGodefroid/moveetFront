@@ -69,7 +69,7 @@ export default class App extends Component {
             key={"tab"}
             tabs
             type={"replace"}
-            //initial={this.state.user !== null ? true : false}
+          //initial={this.state.user !== null ? true : false}
           >
             <Scene
               key={"search"}
@@ -81,7 +81,7 @@ export default class App extends Component {
                 <IconMaterialIcons
                   name={"local-movies"}
                   size={30}
-                  color={props.selected ? Global.heartColor : "#FFF"}
+                  color={props.selected ? Global.moveetRed : "#FFF"}
                 />
               )}
               //onRight={() => Actions.myprofile({ userData: Api.getUser() })}
@@ -106,7 +106,7 @@ export default class App extends Component {
                 <IconMaterialCommunityIcons
                   name={"cards-outline"}
                   size={30}
-                  color={props.selected ? Global.heartColor : "#FFF"}
+                  color={props.selected ? Global.moveetRed : "#FFF"}
                 />
               )}
             />
@@ -119,7 +119,7 @@ export default class App extends Component {
                 <IconMaterialIcons
                   name={"chat-bubble-outline"}
                   size={30}
-                  color={props.selected ? Global.heartColor : "#FFF"}
+                  color={props.selected ? Global.moveetRed : "#FFF"}
                 />
               )}
             />
@@ -132,7 +132,7 @@ export default class App extends Component {
                 <IconMaterialCommunityIcons
                   name={"map-marker"}
                   size={30}
-                  color={props.selected ? Global.heartColor : "#FFF"}
+                  color={props.selected ? Global.moveetRed : "#FFF"}
                 />
               )}
             />
@@ -156,7 +156,7 @@ export default class App extends Component {
                 color={"white"}
               />
             }
-            //<Text style={{ color: "white" }}>Deconnexion</Text>}
+          //<Text style={{ color: "white" }}>Deconnexion</Text>}
           />
           <Scene
             key={"buddyfinder"}

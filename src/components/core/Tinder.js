@@ -64,7 +64,7 @@ class NoMoreCards extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, width: width }}>
         <Loading />
       </View>
     );

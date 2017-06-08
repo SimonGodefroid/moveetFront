@@ -7,14 +7,15 @@ export default class Loading extends React.Component {
   render() {
     return (
       <Image
-        source={require("../../../assets/img/bg-wo.png")}
+        source={require("../../../assets/img/mov-bg-wv.png")}
         style={styles.activity_container}
       >
         <Image
           source={Images.moveetLoad}
           style={{
             height: 115,
-            width: 115
+            width: 115, position: 'absolute',
+            top: 100
           }}
         />
       </Image>
