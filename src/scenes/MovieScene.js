@@ -12,6 +12,7 @@ import {
 import Api from "../Api.js";
 import Global from "../Global.js";
 import MovieCard from "../components/products/MovieCard";
+import MovieReleaseDate from "../components/products/MovieReleaseDate";
 import Avatar from "../components/user/Avatar";
 import Icon from "../components/core/Icon";
 import Button from "../components/core/Button";
@@ -19,10 +20,11 @@ import Fav from "../components/core/Fav";
 import { Actions } from "react-native-router-flux";
 import _ from "lodash";
 
-let {
-  height,
-  width
-} = Dimensions.get("window");
+let { height, width } = Dimensions.get("window");
+
+const styles = StyleSheet.create({
+  moviePoster: {}
+});
 
 export default class MovieScene extends React.Component {
   constructor(props) {
@@ -105,10 +107,9 @@ export default class MovieScene extends React.Component {
     return (
       <Image
         style={{
-          marginTop: 70,
-          margin: 5,
-          height: height - 50,
-          width: width - 10,
+          marginTop: 64,
+          height: height - 40,
+          width: width,
           flex: 1
         }}
         source={{ uri: this.props.movie.posterPath }}
@@ -128,17 +129,13 @@ export default class MovieScene extends React.Component {
             }}
           >
             <View>
-              <Text style={{ marginTop: 10, fontSize: 20, textAlign: 'center' }}>
+              <Text
+                style={{ marginTop: 10, fontSize: 20, textAlign: "center" }}
+              >
                 {this.props.movie.originalTitle.toUpperCase()}
               </Text>
             </View>
-            <View>
-              <Text style={{ marginVertical: 4 }}>
-                {new Date(
-                  this.props.movie.release.releaseDate
-                ).toLocaleDateString("fr-FR")}
-              </Text>
-            </View>
+            <MovieReleaseDate {...this.props} />
 
             <View style={{ alignItems: "center" }}>
               {this.renderStatusList(this.props.movie)}
@@ -152,7 +149,7 @@ export default class MovieScene extends React.Component {
                 onPress={this.toggleView}
                 numberOfLines={this.state.expandText ? 100 : 3}
               >
-                {console.log('this.props.movie', this.props.movie)}
+                {console.log("this.props.movie", this.props.movie)}
                 Réalisé par: {this.props.movie.castingShort.directors}{"\n"}
                 Avec:
               </Text>

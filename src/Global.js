@@ -8,10 +8,10 @@ const fifthColor = "#26766B";
 const sixthColor = "#2B4A46";
 const heartColor = "#EF807E";
 const moveetColor = "#000";
-const moveetRed = "#e06666";
-
-//#e06666 => red in use in titles !!!
-
+const moveetRed = "#e06666"; //#e06666 => red in use in titles !!!
+const moveetRatingGreen = "rgba(113, 229, 78,0.8)"; //#71e54e => green used in rating
+const moveetRatingOrange = "rgba(244, 125, 66,0.9)"; //#f47d42 => orange used in rating
+const moveetRatingYellow = "rgba(255, 224, 53,0.9)"; //#ffe035 => yellow used in rating
 
 /* fonts */
 const mainFontBold = "Nunito-Bold";
@@ -43,6 +43,9 @@ export default {
   sixthColor: sixthColor,
   moveetColor: moveetColor,
   moveetRed: moveetRed,
+  moveetRatingGreen: moveetRatingGreen,
+  moveetRatingOrange: moveetRatingOrange,
+  moveetRatingYellow: moveetRatingYellow,
   heartColor: heartColor,
 
   mainFontBold: mainFontBold,

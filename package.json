@@ -22,6 +22,7 @@
     "react-native-image-picker": "^0.26.3",
     "react-native-keyboard-aware-scroll-view": "^0.2.8",
     "react-native-maps": "^0.13.0",
+    "react-native-progress": "^3.2.1",
     "react-native-router-flux": "^3.38.0",
     "react-native-simple-store": "^1.1.0",
     "react-native-splash-screen": "^2.1.0",

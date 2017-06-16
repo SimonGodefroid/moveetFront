@@ -13,13 +13,14 @@ default_platform :ios
 # Fastfile actions accept additional configuration, but
 # don't worry, fastlane will prompt you for required
 # info which you can add here later
-lane :beta do
+lane :appstore do
   # build your iOS app
-  gym(
-    # scheme: "YourScheme",
-    export_method: "app-store"
-  )
-
-  # upload to Testflight
-  pilot(skip_waiting_for_build_processing: true)
+  
+  cert
+  pem(generate_p12: true, save_private_key: true)
+  sigh
+  update_project_codesigning(path: "app.xcodeproj",use_automatic_signing: false)
+  gym(include_bitcode: false, clean: true)
+  update_project_codesigning(path: "app.xcodeproj",use_automatic_signing: true)
+  deliver
 end

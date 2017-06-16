@@ -20,10 +20,7 @@ import UserCard from "../components/products/UserCard";
 import _ from "lodash";
 import { TabViewAnimated, TabBar } from "react-native-tab-view";
 
-let {
-  height,
-  width
-} = Dimensions.get("window");
+let { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
@@ -114,21 +111,50 @@ export default class BuddiesTabsScene extends React.Component {
     console.log("buddyscene user loc", !Api.getUser().account.location);
     console.log("this.state.matchesData", this.state.matchesData);
     if (this.state.allUsersData.length <= 0) {
-      return (<Loading />)
+      return <Loading />;
     }
     return (
-      //<ScrollView style={{ marginTop: Platform.OS === "ios" ? 64 : 0 }}>
-      <View style={{ marginTop: Platform.OS === "ios" ? 64 : 0, marginBottom: Platform.OS === "ios" ? 150 : 0 }}>
-        <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, borderStyle: 'solid' }}>
-          <Text style={{ textAlign: "center", padding: 4, backgroundColor: Global.moveetRed, color: 'white' }}>Matches</Text>
-          {this.renderListView(this.state.matches, this.state.matchesData)}
+      <ScrollView>
+        <View
+          style={{
+            marginTop: Platform.OS === "ios" ? 64 : 0,
+            marginBottom: Platform.OS === "ios" ? 150 : 0
+          }}
+        >
+          <View
+            style={{
+              borderBottomColor: "black",
+              borderBottomWidth: 1,
+              borderStyle: "solid"
+            }}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                padding: 4,
+                backgroundColor: Global.moveetRed,
+                color: "white"
+              }}
+            >
+              Matches
+            </Text>
+            {this.renderListView(this.state.matches, this.state.matchesData)}
+          </View>
+          <View style={{}}>
+            <Text
+              style={{
+                textAlign: "center",
+                padding: 4,
+                backgroundColor: Global.moveetRed,
+                color: "white"
+              }}
+            >
+              All Users
+            </Text>
+            {this.renderListView(this.state.allUsers, this.state.allUsersData)}
+          </View>
         </View>
-        <View style={{}}>
-          <Text style={{ textAlign: "center", padding: 4, backgroundColor: Global.moveetRed, color: 'white' }}>All Users</Text>
-          {this.renderListView(this.state.allUsers, this.state.allUsersData)}
-        </View>
-      </View>
-      //</ScrollView>
+      </ScrollView>
     );
   }
 }

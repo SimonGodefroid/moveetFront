@@ -20,10 +20,7 @@ import Fav from "../components/core/Fav";
 import _ from "lodash";
 import { TabViewAnimated, TabBar } from "react-native-tab-view";
 
-let {
-  height,
-  width
-} = Dimensions.get("window");
+let { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
@@ -97,7 +94,8 @@ export default class BuddyFinderScene extends React.Component {
       return (
         <View>
           <Text style={{ marginTop: 200, padding: 4, textAlign: "center" }}>
-            Oups ! Personne n'a ajouté ce film à leur pipeline. Ajoute-le pour pouvoir être trouvé plus tard par d'autres buddies !
+            Oups ! Personne n'a ajouté ce film à leur pipeline. Ajoute-le pour
+            pouvoir être trouvé plus tard par d'autres buddies !
           </Text>
           <View style={{ alignItems: "center" }}>
             <Fav movieId={this.props.movie._id} size={100} />
@@ -109,7 +107,11 @@ export default class BuddyFinderScene extends React.Component {
       console.log("coucou listview");
       return (
         <ScrollView>
-          <Text style={{ textAlign: "center", padding: 4 }}>Buddies Found</Text>
+          <Text style={{ textAlign: "center", padding: 4 }}>
+            {dataCondition.length === 1
+              ? `${dataCondition.length}` + " Buddy trouvé"
+              : `${dataCondition.length}` + " Buddies trouvés"}
+          </Text>
           <ListView
             dataSource={data}
             renderRow={rowData => this.renderUserCard(rowData)}

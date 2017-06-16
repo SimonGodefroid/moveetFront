@@ -11,10 +11,7 @@ import {
 import Api from "../Api.js";
 import GenreTab from "../components/products/GenreTab";
 import Images from "../components/core/Images";
-let {
-  height,
-  width
-} = Dimensions.get("window");
+let { height, width } = Dimensions.get("window");
 
 export default class SearchScene extends React.Component {
   render() {

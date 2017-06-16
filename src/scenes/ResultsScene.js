@@ -12,17 +12,13 @@ import {
 import Global from "../Global.js";
 import Api from "../Api.js";
 import MovieCard from "../components/products/MovieCard";
-import IconMaterialCommunityIcons
-  from "react-native-vector-icons/MaterialCommunityIcons";
 import Avatar from "../components/user/Avatar";
 import Loading from "../components/core/Loading";
 import { Actions } from "react-native-router-flux";
 import { TabViewAnimated, TabBar } from "react-native-tab-view";
-
-let {
-  height,
-  width
-} = Dimensions.get("window");
+import Rating from "../components/products/Rating";
+import ReleaseDate from "../components/products/ReleaseDate";
+let { height, width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   container: {
@@ -32,6 +28,27 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  salles: {
+    position: "absolute",
+    bottom: 6,
+    left: 140,
+    flexDirection: "row",
+    zIndex: 20,
+    borderRadius: 14,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    borderStyle: "solid",
+    borderColor: "black",
+    borderWidth: 1
+  },
+  rating: {
+    position: "absolute",
+    right: 12,
+    bottom: 8,
+    zIndex: 100000,
+    backgroundColor: "transparent",
+    fontWeight: "bold"
   }
 });
 
@@ -87,11 +104,10 @@ export default class ResultsScene extends React.Component {
   };
 
   _renderScene = ({ route }) => {
-
     switch (route.key) {
       case "1":
         if (this.state.nowShowingMoviesData.length <= 0) {
-          return (<Loading />)
+          return <Loading />;
         }
         return (
           <View style={styles.page}>
@@ -104,7 +120,7 @@ export default class ResultsScene extends React.Component {
         );
       case "2":
         if (this.state.comingSoonMoviesData.length <= 0) {
-          return (<Loading />)
+          return <Loading />;
         }
         return (
           <View style={styles.page}>
@@ -119,27 +135,54 @@ export default class ResultsScene extends React.Component {
     }
   };
 
+  computeRemainingDays(movie) {
+    console.log("movie remain", movie);
+    let currentTime = new Date();
+    let todayDate = new Date(
+      Date.UTC(
+        currentTime.getFullYear(),
+        currentTime.getMonth(),
+        currentTime.getDate()
+      )
+    );
+    let date2 = new Date(movie.release.releaseDate);
+    let timeDiff = Math.abs(date2 - todayDate.getTime());
+    let diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+    return diffDays;
+  }
+
   renderStatusList(movie) {
     if (movie.statusList === "comingsoon") {
       return (
         <Text
           style={{
-            color: Global.moveetRed,
+            color: "white"
           }}
         >
-          Bientôt à l'affiche
+          {/*Dans {this.computeRemainingDays(movie)/7.toFixed(0))} semaines*/}
+          J-{this.computeRemainingDays(movie)}
+          {/*{console.log("release date", movie.release.releaseDate)}*/}
         </Text>
       );
     }
     return (
       <Text
         style={{
-          color: "black",
+          color: "white"
         }}
       >
         Dans {movie.statistics.theaterCount} salles
       </Text>
     );
+  }
+
+  renderRating(rowData) {
+    console.log("renderRating rowData", rowData.statusList);
+    if (rowData.statusList === "nowshowing") {
+      return <Rating {...rowData} />;
+    } else {
+      return <ReleaseDate {...rowData} />;
+    }
   }
 
   // renderGenre(rowData) {
@@ -148,7 +191,6 @@ export default class ResultsScene extends React.Component {
   //   ));
   //   return <View>{genres}</View>;
   // }
-
 
   renderMovieCard(rowData) {
     return (
@@ -164,49 +206,11 @@ export default class ResultsScene extends React.Component {
             synopsis={rowData.synopsis}
           />
         </View>
-        <View
-          style={{
-            position: "absolute",
-            bottom: 6,
-            left: 140,
-            flexDirection: "row",
-            zIndex: 20,
-            //            backgroundColor: 'black',
-            borderRadius: 14,
-            paddingHorizontal: 6,
-            paddingVertical: 4,
-            borderStyle: 'solid',
-            borderColor: 'black',
-            borderWidth: 1,
-          }}
-        >
+        <View style={[styles.salles, { backgroundColor: "black" }]}>
           {this.renderStatusList(rowData)}
         </View>
-        <View>
-          <Text
-            style={{
-              position: 'absolute',
-              right: 12,
-              bottom: 8,
-              zIndex: 100000,
-              backgroundColor: "transparent",
-              fontWeight: 'bold'
-            }}
-          >
-            {!isNaN(rowData.statistics.userRating * 2)
-              ? (rowData.statistics.userRating * 2).toFixed(1)
-              : ""}
-          </Text>
-        </View>
-        <IconMaterialCommunityIcons
-          name={"popcorn"}
-          size={40}
-          color={
-            rowData.statistics.userRating * 2 < 7 ? "orange" : Global.heartColor
-          }
-          style={{ position: "absolute", zIndex: -10, right: 4, bottom: 20 }}
-        />
-      </TouchableOpacity >
+        {this.renderRating(rowData)}
+      </TouchableOpacity>
     );
   }
 
